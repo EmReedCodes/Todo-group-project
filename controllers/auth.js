@@ -13,24 +13,36 @@ const User = require('../models/User')
   
   exports.postLogin = (req, res, next) => {
     const validationErrors = []
+
+  //Pushes error messages to an array validationErrors
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (validator.isEmpty(req.body.password)) validationErrors.push({ msg: 'Password cannot be blank.' })
-  
+
+  //Flashes array of validationErrors
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
       return res.redirect('/login')
     }
+
+  //Saves the email in a standardized format
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
-  
+
+  //local getting passed to login ejs  (locals.messages.errors) 
     passport.authenticate('local', (err, user, info) => {
       if (err) { return next(err) }
       if (!user) {
         req.flash('errors', info)
+
+  //if this user doesnt exist go back to the login page no access
         return res.redirect('/login')
       }
+
+  //if there is an error return error
       req.logIn(user, (err) => {
         if (err) { return next(err) }
+  //if not return msg success
         req.flash('success', { msg: 'Success! You are logged in.' })
+  //now redirect to /todos with their info
         res.redirect(req.session.returnTo || '/todos')
       })
     })(req, res, next)
