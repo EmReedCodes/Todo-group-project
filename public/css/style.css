@@ -1,6 +1,26 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+}
+
 h1{
     color: red;
 }
+
+
 .completed{
     text-decoration: line-through;
     color: gray;
@@ -8,3 +28,22 @@ h1{
 .not{
     text-decoration: underline;
 }
+
+/* li .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  li .buttons .save {
+    display: none;
+  }
+  li .content {
+    margin: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    flex-grow: 1;
+  }
+  li.editing .save {
+    display: initial;
+  }
+  li.editing .edit {
+    display: none;
+  } */

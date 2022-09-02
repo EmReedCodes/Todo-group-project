@@ -42,6 +42,19 @@ module.exports = {
             console.log(err)
         }
     },
+    //need to send over the new text content
+    saveTodo: async(req, res) => {
+        console.log(req.body.todoIdFromJSFile)
+        try{
+            Todo.findOneAndUpdate({_id: req.body.todoIdFromJSFile},{
+                todo: req.body.todo
+            })
+            res.json('saved worked?')
+        }
+        catch(err){
+            console.log(err)
+        }
+    },
     deleteTodo: async (req, res)=>{
         console.log(req.body.todoIdFromJSFile)
         try{

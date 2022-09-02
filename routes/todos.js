@@ -11,6 +11,9 @@ router.put('/markComplete', todosController.markComplete)
 
 router.put('/markIncomplete', todosController.markIncomplete)
 
+//if we want to edit will need to use /save
+router.put('/save', todosController.saveTodo)
+
 router.delete('/deleteTodo', todosController.deleteTodo)
 
 module.exports = router
