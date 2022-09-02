@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,41 +12,22 @@
     <script src="https://kit.fontawesome.com/ddd77854d8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <div class="container">
-      
-        <h1>Todos</h1>
-        <form action="/todos/createTodo" method='POST'>
-            <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-            <input type="submit">
-        </form>
-        <ul>
-          <% todos.forEach( el => { %>
-        <!-- ok its false by default  -->
-            <% if (el.completed === false) { %>
-                  <li class='todoItem' data-id='<%=el._id%>'>
-                    <!-- content posted span below here -->
-                      <span class="content"><%= el.todo %></span>
-                    <!-- buttons start below -->
-
-                        <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
-
-                        <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
-                      
-                      <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
-
-                  </li>
-                  <% } else { %>
-                    <!-- if its not completed? -->
-                    <!-- good todo for someone -->
-          <% } %>
-          <% }) %>
-          </ul>
-          <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-          <a href="/logout">Logout</a>
-      
-    </div>
-
-    <script src="js/main.js"></script>
+  <h1>Todos</h1>
+  <ul>
+  <% todos.forEach( el => { %>
+    <li class='todoItem' data-id='<%=el._id%>'>
+      <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+      <span class='del'> Delete </span>
+    </li>
+  <% }) %>    
+  </ul>
+  <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+  <form action="/todos/createTodo" method='POST'>
+    <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+    <input type="submit">
+  </form>
+  <a href="/logout">Logout</a>
+  <script src="js/main.js"></script>
+>>>>>>> develop
 </body>
 </html>

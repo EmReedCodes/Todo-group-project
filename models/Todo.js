@@ -1,15 +1,21 @@
+/** @format */
+
 const mongoose = require('mongoose')
 
 const TodoSchema = new mongoose.Schema({
   todo: {
     type: String,
-    required: true,
+    required: true
   },
   completed: {
     type: Boolean,
-    required: true,
+    required: true
   },
   userId: {
+    type: String,
+    required: true
+  },
+  priority: {
     type: String,
     required: true
   }

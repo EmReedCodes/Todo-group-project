@@ -1,3 +1,5 @@
+/** @format */
+
 
 
 const editBtn = document.querySelectorAll('.edit')
@@ -19,12 +21,12 @@ Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
 })
 
-Array.from(todoItem).forEach((el)=>{
-    el.addEventListener('click', markComplete)
+Array.from(todoItem).forEach(el => {
+  el.addEventListener('click', markComplete)
 })
 
-Array.from(todoComplete).forEach((el)=>{
-    el.addEventListener('click', markIncomplete)
+Array.from(todoComplete).forEach(el => {
+  el.addEventListener('click', markIncomplete)
 })
 
 function editTodo(event) {
@@ -94,22 +96,22 @@ async function deleteTodo(){
     }
 }
 
-async function markComplete(){
-    const todoId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('todos/markComplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
+async function markComplete() {
+  const todoId = this.parentNode.dataset.id
+  try {
+    const response = await fetch('todos/markComplete', {
+      method: 'put',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId
+      })
+    })
+    const data = await response.json()
+    console.log(data)
+    location.reload()
+  } catch (err) {
+    console.log(err)
+  }
 }
 //hello
 async function markIncomplete(){
