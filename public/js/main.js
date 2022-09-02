@@ -69,3 +69,23 @@ async function markIncomplete() {
     console.log(err)
   }
 }
+
+async function changeTodoPriority() {
+  const todoId = this.parentNode.dataset.id //change depending on how frontend is structured
+  const newPriority = "Normal"
+  try {
+    const response = await fetch('todos/changeTodoPriority', {
+      method: 'put',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId,
+        todoPriorityFromJSFile: newPriority
+      })
+    })
+    const data = await response.json()
+    console.log(data)
+    location.reload()
+  } catch (err) {
+    console.log(err)
+  }
+}
