@@ -59,5 +59,8 @@ module.exports = {
     } catch (err) {
       console.log(err)
     }
+  },
+  changePriority: async (req, res) => {
+    console.log('change priority')
   }
 }
