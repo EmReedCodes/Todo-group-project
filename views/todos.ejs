@@ -26,13 +26,13 @@
                     <!-- content posted span below here -->
                       <span class="content"><%= el.todo %></span>
                     <!-- buttons start below -->
+
+                        <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
+
+                        <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
+                      
                       <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
-                      <a onClick="edit('<%= el._id %>', event)" class="edit">
-                        <span class="fa-solid fa-pen-to-square" role="img" aria-label="Edit"></span>
-                      </a>
-                      <a onClick="save('<%= el._id %>', event)" class="save">
-                        <span class="fa-solid fa-save" role="img" aria-label="Save"></span>
-                      </a>
+
                   </li>
                   <% } else { %>
                     <!-- if its not completed? -->

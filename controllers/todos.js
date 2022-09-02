@@ -46,13 +46,21 @@ module.exports = {
     saveTodo: async(req, res) => {
         console.log(req.body.todoIdFromJSFile)
         try{
-            Todo.findOneAndUpdate({_id: req.body.todoIdFromJSFile},{
+            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},
+            {
+                //sending over text 
                 todo: req.body.todo
+            },
+            {
+                new: true
             })
+            console.log(req.body.todo)
             res.json('saved worked?')
+            res.status(200).send({msg: "a-ok!"})
         }
         catch(err){
             console.log(err)
+            res.status(400).send(err)
         }
     },
     deleteTodo: async (req, res)=>{

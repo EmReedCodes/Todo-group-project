@@ -1,6 +1,19 @@
+
+
+const editBtn = document.querySelectorAll('.edit')
+const saveBtn = document.querySelectorAll('.save')
+
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
+
+Array.from(editBtn).forEach((el)=>{
+    el.addEventListener('click', editTodo)
+})
+
+Array.from(saveBtn).forEach((el)=>{
+    el.addEventListener('click', saveTodo)
+})
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteTodo)
@@ -14,7 +27,9 @@ Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', markIncomplete)
 })
 
-function edit(id, event) {
+function editTodo(event) {
+
+
     let parentElm = event.target.closest("li")
     let contentElm = parentElm.querySelector(".content")
     //this is the magic that allows the super clean edit on page
@@ -23,48 +38,46 @@ function edit(id, event) {
   }
   
 
-async function save(id, event) {
-  //so leon uses below to grab id since its directly near no containers or elements between
+async function saveTodo(event) {
   
   //need to grab the value out of .content
+
   const todoId = this.parentNode.dataset.id
-  
-    // let parentElm = event.target.closest("li")
-    console.log(parentElm)
-    //the element within that parentElm's
-    let contentElm = parentElm.querySelector(".content")
-    console.log(contentElm)
+  console.log(todoId)
 
-    let content = contentElm.innerText
+  let parentElm = event.target.closest("li")
+  console.log(parentElm)
+  //the element within that parentElm's
+  let contentElm = parentElm.querySelector(".content")
+  console.log(contentElm)
+  //where is content stored?
+  let content = contentElm.innerText
   
- 
-    let rawResponse = await fetch("/save", {
-  
-  
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({ id: id, content: content })
+  try{
+    const response = await fetch('todos/saveTodo', {
+        method: 'put',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify({
+            'todoIdFromJSFile': todoId,
+            'todo': content
+        })
     })
-  
-    if (rawResponse.status == 200) {
-      parentElm.classList.remove('editing')
-
-    
-    } else { // everything is not good
-      console.log(rawResponse)
-
-      alert("something went wrong in the server")
-
+    const data = await response.json()
+    console.log(data)
+    if(response.status == 200){
+        parentElm.classList.remove('editing')
+        location.reload()
     }
+    
+}catch(err){
+    console.log(err)
+}
 
 }
 
 async function deleteTodo(){
     const todoId = this.parentNode.dataset.id
+    console.log(todoId)
     try{
         const response = await fetch('todos/deleteTodo', {
             method: 'delete',
@@ -101,6 +114,7 @@ async function markComplete(){
 //hello
 async function markIncomplete(){
     const todoId = this.parentNode.dataset.id
+    
     try{
         const response = await fetch('todos/markIncomplete', {
             method: 'put',

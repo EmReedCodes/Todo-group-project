@@ -1,49 +1,17 @@
-*{
-  margin: 0;
-  padding: 0;
+.todoItem .save {
+  display: none;
 }
 
-body {
-  min-height: 100vh;
+.todoItem .content {
+  margin: 0.5rem;
+  transition: all 0.15s ease-in-out;
+  flex-grow: 1;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-
+.todoItem.editing .save {
+  display: initial;
 }
 
-h1{
-    color: red;
-}
-
-
-.completed{
-    text-decoration: line-through;
-    color: gray;
-}
-.not{
-    text-decoration: underline;
-}
-
- li .buttons {
-    display: flex;
-    flex-direction: column;
-  }
-  li .buttons .save {
-    display: none;
-  }
-  li .content {
-    margin: 0.5rem;
-    transition: all 0.15s ease-in-out;
-    flex-grow: 1;
-  }
-  li.editing .save {
-    display: initial;
-  }
-  li.editing .edit {
-    display: none;
-  }
+.todoItem.editing .edit {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
