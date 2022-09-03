@@ -1,6 +1,3 @@
-/** @format */
-
-
 
 const editBtn = document.querySelectorAll('.edit')
 const saveBtn = document.querySelectorAll('.save')
@@ -39,22 +36,17 @@ function editTodo(event) {
     parentElm.classList.add("editing")
   }
   
-
+//Im looking to grab the value out of .content (el.todo)
 async function saveTodo(event) {
-  
-  //need to grab the value out of .content
-
+  //this is grabbing the unique id for each document
   const todoId = this.parentNode.dataset.id
-  console.log(todoId)
-
+//since my save button is not a direct child I had to grab the closest li which would be the one to edit
   let parentElm = event.target.closest("li")
-  console.log(parentElm)
-  //the element within that parentElm's
+  //grabbing the element span we are on
   let contentElm = parentElm.querySelector(".content")
-  console.log(contentElm)
-  //where is content stored?
+  //now here is the actual text we want to send the DB
   let content = contentElm.innerText
-  
+  console.log(content)
   try{
     const response = await fetch('todos/saveTodo', {
         method: 'put',
@@ -64,8 +56,7 @@ async function saveTodo(event) {
             'todo': content
         })
     })
-    const data = await response.json()
-    console.log(data)
+   //if we get a 200 response back from db its been added and we can remove editing class from the 'li'
     if(response.status == 200){
         parentElm.classList.remove('editing')
         location.reload()
@@ -132,3 +123,5 @@ async function markIncomplete(){
         console.log(err)
     }
 }
+
+

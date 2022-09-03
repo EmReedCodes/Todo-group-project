@@ -1,4 +1,4 @@
-/** @format */
+
 
 const Todo = require('../models/Todo')
 
@@ -46,18 +46,16 @@ module.exports = {
     },
     //need to send over the new text content
     saveTodo: async(req, res) => {
-        console.log(req.body.todoIdFromJSFile)
+     
         try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},
+            await Todo.findOneAndUpdate
+            ({_id: req.body.todoIdFromJSFile},
             {
                 //sending over text 
                 todo: req.body.todo
-            },
-            {
-                new: true
             })
-            console.log(req.body.todo)
-            res.json('saved worked?')
+            //this is sending over EVERYTHING not the text why is it sending me username info??
+            //console.log(req.body.todoIdFromJSFile)
             res.status(200).send({msg: "a-ok!"})
         }
         catch(err){
@@ -76,3 +74,4 @@ module.exports = {
         }
     }
 }    
+
