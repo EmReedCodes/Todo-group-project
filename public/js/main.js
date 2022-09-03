@@ -27,12 +27,12 @@ Array.from(todoComplete).forEach(el => {
 })
 
 function editTodo(event) {
-
-
+  //find closest li (I dont know why I couldnt use this.target but I had to use event.target)
     let parentElm = event.target.closest("li")
     let contentElm = parentElm.querySelector(".content")
     //this is the magic that allows the super clean edit on page
     contentElm.setAttribute("contenteditable", true)
+    //since edit was clicked add the class 'editing' now
     parentElm.classList.add("editing")
   }
   
@@ -58,6 +58,7 @@ async function saveTodo(event) {
     })
    //if we get a 200 response back from db its been added and we can remove editing class from the 'li'
     if(response.status == 200){
+    //we received confirmation our word was replaced in db we can take off 'editing' 
         parentElm.classList.remove('editing')
         location.reload()
     }

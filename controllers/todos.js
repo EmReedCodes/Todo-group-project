@@ -46,16 +46,13 @@ module.exports = {
     },
     //need to send over the new text content
     saveTodo: async(req, res) => {
-     
         try{
             await Todo.findOneAndUpdate
             ({_id: req.body.todoIdFromJSFile},
             {
-                //sending over text 
+            //sending over text content to db
                 todo: req.body.todo
             })
-            //this is sending over EVERYTHING not the text why is it sending me username info??
-            //console.log(req.body.todoIdFromJSFile)
             res.status(200).send({msg: "a-ok!"})
         }
         catch(err){
