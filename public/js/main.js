@@ -129,9 +129,6 @@ async function markIncomplete(){
         console.log(err)
     }
 }
-=======
-
->>>>>>> develop
 
 async function changeTodoPriority() {
   const todoId = this.parentNode.dataset.id //change depending on how frontend is structured
