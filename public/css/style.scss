@@ -1,0 +1,14 @@
+.todoItem .save {
+    display: none;
+  }
+  .todoItem .content {
+    margin: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    flex-grow: 1;
+  }
+  .todoItem.editing .save {
+    display: initial;
+  }
+  .todoItem.editing .edit {
+    display: none;
+  }
