@@ -1,4 +1,4 @@
-/** @format */
+
 
 const passport = require('passport')
 const validator = require('validator')

@@ -1,12 +1,17 @@
-/** @format */
+.todoItem .save {
+  display: none;
+}
 
-h1 {
-  color: red;
+.todoItem .content  {
+margin: 0.5rem;
+  transition: all 0.15s ease-in-out;
+flex-grow: 1;
 }
-.completed {
-  text-decoration: line-through;
-  color: gray;
+
+.todoItem.editing .save  {
+display: initial;
 }
-.not {
-  text-decoration: underline;
-}
+
+.todoItem.editing .edit {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
