@@ -1,0 +1,170 @@
+
+
+#―――――――――――――――――――――――――――――
+| visual hierarchy
+
+  [!] 
+  [>] [?]
+  [ ] [ ]
+  [*] [o]
+      [/]
+      [x] .
+      [-] 
+
+
+      importance
+    | 
+    [ ] [ ]
+        | 
+          status
+
+
+#―――――――――――――――――――――――――――――
+| explanations
+
+
+  [!] fixme   high priority
+  [>] hack    medium priority
+  [ ] todo    regular priority
+  [*] icebox  low priority
+
+  [?] think  gotta think about it before continuing 
+  [o] doing   ongoing task
+  [/] block   task is blocked by something
+  [x] done    task has been completed
+  [-] cancel  task has been cancelled
+
+
+#―――――――――――――――――――――――――――――
+| data organization
+
+
+
+db: {
+
+  enums: {
+    priority: {
+      LOW    : "[*]",
+      REGULAR: "[ ]",
+      MEDIUM : "[>]",
+      HIGH   : "[!]",
+    }
+    status: {
+      REGULAR: "[ ]",
+      THINK  : "[?]",
+      DOING  : "[o]",
+      BLOCK  : "[/]",
+      DONE   : "[x]",
+      CANCEL : "[-]",
+    }
+  },
+
+  task: {
+    taskID: integer
+    priority: LOW, // optional
+    status: DOING,
+    content: {
+      title: "foobar",
+      description: "bazz quux"
+    },
+    users: [
+      "@self",
+      "@octoshrimpy"
+    ]
+  },
+
+  list: {
+    name: "list name"
+    tasks: [
+      taskObj, taskObj, taskObj
+    ],
+    defaultPriority: LOW,
+  }
+
+}
+
+
+#―――――――――――――――――――――――――――――
+| feature ideas
+
+  * celebration feature
+    * when all tasks are complete
+  * color-coded priorities
+  * progress bar
+
+
+
+  {
+  "Primary": {
+    "50": "#f9fbeb",
+    "100": "#eff5cd",
+    "200": "#e6efae",
+    "300": "#dde891",
+    "400": "#d6e37c",
+    "500": "#d0de6b",
+    "600": "#c2cc63",
+    "700": "#b1b65b",
+    "800": "#9f9f54",
+    "900": "#80794a"
+  },
+  "Complementary": {
+    "50": "#ebecf6",
+    "100": "#ccceea",
+    "200": "#acaedc",
+    "300": "#8c8ecd",
+    "400": "#7474c1",
+    "500": "#5f5bb6",
+    "600": "#5952ab",
+    "700": "#50489f",
+    "800": "#483e93",
+    "900": "#3c2c7c"
+  },
+  "Analogous - 1": {
+    "50": "#ffeabf",
+    "100": "#f0cba1",
+    "200": "#d4ac7f",
+    "300": "#b68d5b",
+    "400": "#9f743f",
+    "500": "#885d22",
+    "600": "#7d531c",
+    "700": "#6e4613",
+    "800": "#61380c",
+    "900": "#522901"
+  },
+  "Analogous - 2": {
+    "50": "#f2f8ec",
+    "100": "#ddeece",
+    "200": "#c8e3b0",
+    "300": "#b2d791",
+    "400": "#a2cf7a",
+    "500": "#92c664",
+    "600": "#84b65b",
+    "700": "#71a150",
+    "800": "#5f8d47",
+    "900": "#426a36"
+  },
+  "Triadic - 1": {
+    "50": "#e7f4e7",
+    "100": "#c5e4c5",
+    "200": "#9fd3a1",
+    "300": "#78c27b",
+    "400": "#5bb65f",
+    "500": "#3da943",
+    "600": "#349a3b",
+    "700": "#288830",
+    "800": "#1d7826",
+    "900": "#055914"
+  },
+  "Triadic - 2": {
+    "50": "#e2f1f3",
+    "100": "#b6dde0",
+    "200": "#87c7cc",
+    "300": "#5bb1b6",
+    "400": "#40a1a4",
+    "500": "#2a9193",
+    "600": "#278485",
+    "700": "#237474",
+    "800": "#206464",
+    "900": "#184946"
+  }
+}

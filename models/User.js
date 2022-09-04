@@ -1,3 +1,5 @@
+
+
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 
@@ -8,22 +10,26 @@ const UserSchema = new mongoose.Schema({
     password: { type: String }
 })
 
-
 // Password hash middleware.
- 
- UserSchema.pre('save', function save(next) {
+
+UserSchema.pre('save', function save(next) {
   const user = this
-  if (!user.isModified('password')) { return next() }
+  if (!user.isModified('password')) {
+    return next()
+  }
   bcrypt.genSalt(10, (err, salt) => {
-    if (err) { return next(err) }
+    if (err) {
+      return next(err)
+    }
     bcrypt.hash(user.password, salt, (err, hash) => {
-      if (err) { return next(err) }
+      if (err) {
+        return next(err)
+      }
       user.password = hash
       next()
     })
   })
 })
-
 
 // Helper method for validating user's password.
 
@@ -32,6 +38,5 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
     cb(err, isMatch)
   })
 }
-
 
 module.exports = mongoose.model('User', UserSchema)
