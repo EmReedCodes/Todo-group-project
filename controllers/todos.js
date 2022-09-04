@@ -75,5 +75,4 @@ module.exports = {
       console.log(err)
     }
   }
-  //new comment
 }
