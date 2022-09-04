@@ -5,6 +5,11 @@ const saveBtn = document.querySelectorAll('.save')
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
+const todoPriority = document.querySelectorAll('#priority')
+
+Array.from(todoPriority).forEach((el)=>{
+    el.addEventListener('change', changeTodoPriority)
+})
 
 Array.from(editBtn).forEach((el)=>{
     el.addEventListener('click', editTodo)
