@@ -13,6 +13,7 @@ router.put('/markComplete', todosController.markComplete)
 
 router.put('/markIncomplete', todosController.markIncomplete)
 
+router.put('/changeTodoPriority', todosController.changeTodoPriority)
 
 router.put('/saveTodo', todosController.saveTodo)
 
