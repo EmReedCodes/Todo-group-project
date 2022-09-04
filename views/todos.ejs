@@ -23,25 +23,55 @@
         <ul>
           <% todos.forEach( el => { %>
         <!-- ok its false by default  -->
-            <% if (el.completed === false) { %>
-                  <li class='todoItem' data-id='<%=el._id%>'>
+            <!-- <% if (el.completed === false) { %> -->
+              <!-- <li class='todoItem' data-id='<%=el._id%>'>
+                
+                <span class="content"><%= el.todo %></span>
+                
+                
+                  <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
+                
+                  <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
+                
+                <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
+                
+               <span class="fa-sharp fa-solid fa-check completed" role="img" aria-label="Check"></span>
+                
+                </li>
+                  <% } else { %>
+                    <li class='todoItem' data-id='<%=el._id%>'>
                 
                       <span class="content"><%= el.todo %></span>
-               
-
+                      
+                      
                         <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
-
+                      
                         <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
                       
                       <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
-
-                  </li>
-                  <% } else { %>
-                    <!-- if its not completed? -->
-                    <!-- good todo for someone -->
-          <% } %>
+                      
+                      <span class="fa-sharp fa-solid fa-check completed" role="img" aria-label="Check"></span>
+                      
+                      </li> -->
+          <!-- <% } %> -->
           <% }) %>
           </ul>
+            <ul>
+                    <% todos.forEach( el => { %>
+                            <li class='todoItem' data-id='<%=el._id%>'>
+                                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                                
+                        <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
+                      
+                        <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
+                      
+                      <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
+                      
+                      <span class="fa-sharp fa-solid fa-check check " role="img" aria-label="Check"></span>
+                            </li>
+                    <% }) %>    
+                    </ul> 
+                    <div id="emitter"></div>
           <h2><%= user.userName %> has <%= left %> things left to do.</h2>
           <a href="/logout">Logout</a>
       
@@ -50,3 +80,5 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+<!-- I'm here -->
