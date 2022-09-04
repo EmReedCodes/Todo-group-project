@@ -129,7 +129,6 @@ async function markIncomplete(){
         console.log(err)
     }
 }
->>>>>>> ad513e2 (added changeTodoPriority to controllers/todos, public/js/main, routes/todos)
 
 async function changeTodoPriority() {
   const todoId = this.parentNode.dataset.id //change depending on how frontend is structured
