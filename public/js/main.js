@@ -1,10 +1,14 @@
 
+//LEON'S CODE//
 const editBtn = document.querySelectorAll('.edit')
 const saveBtn = document.querySelectorAll('.save')
 
 const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('span.not')
-const todoComplete = document.querySelectorAll('span.completed')
+const todoItem = document.querySelectorAll('.check')
+
+
+
+// const todoComplete = document.querySelectorAll('.span.not')
 const todoPriority = document.querySelectorAll('#priority')
 
 Array.from(todoPriority).forEach((el)=>{
@@ -27,9 +31,9 @@ Array.from(todoItem).forEach(el => {
   el.addEventListener('click', markComplete)
 })
 
-Array.from(todoComplete).forEach(el => {
-  el.addEventListener('click', markIncomplete)
-})
+// Array.from(todoComplete).forEach(el => {
+//   el.addEventListener('click', markIncomplete)
+// })
 
 function editTodo(event) {
   //find closest li (I dont know why I couldnt use this.target but I had to use event.target)
@@ -93,6 +97,8 @@ async function deleteTodo(){
     }
 }
 
+
+
 async function markComplete() {
   const todoId = this.parentNode.dataset.id
   try {
@@ -130,22 +136,4 @@ async function markIncomplete(){
     }
 }
 
-async function changeTodoPriority() {
-  const todoId = this.parentNode.dataset.id //change depending on how frontend is structured
-  const newPriority = "Normal"
-  try {
-    const response = await fetch('todos/changeTodoPriority', {
-      method: 'put',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        todoIdFromJSFile: todoId,
-        todoPriorityFromJSFile: newPriority
-      })
-    })
-    const data = await response.json()
-    console.log(data)
-    location.reload()
-  } catch (err) {
-    console.log(err)
-  }
-}
+
