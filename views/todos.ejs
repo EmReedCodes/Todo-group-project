@@ -59,7 +59,7 @@
             <ul>
                     <% todos.forEach( el => { %>
                             <li class='todoItem' data-id='<%=el._id%>'>
-                                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                                <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
                                 
                         <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
                       
@@ -67,18 +67,18 @@
                       
                       <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
                       
-                      <span class="fa-sharp fa-solid fa-check check " role="img" aria-label="Check"></span>
+                      <span class="fa-sharp fa-solid fa-check check container" role="img" aria-label="Check"></span>
                             </li>
                     <% }) %>    
                     </ul> 
                     <!-- CODE PEN CODE -->
-                    <div id="emitter"></div>
+                    <!-- <div id="emitter"></div> -->
                     <!-- LEON'S CODE -->
           <h2><%= user.userName %> has <%= left %> things left to do.</h2>
           <a href="/logout">Logout</a>
       
     </div>
-
+    
     <script src="js/main.js"></script>
 </body>
 </html>
