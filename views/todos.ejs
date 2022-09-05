@@ -25,6 +25,7 @@
 
             <ul>
                     <% todos.forEach( el => { %>
+                      
                             <li class='todoItem' data-id='<%=el._id%>'>
                                 <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
                                 
@@ -39,8 +40,8 @@
                     <% }) %>    
                     </ul> 
                
-              <h2><%= user.userName %> has <%= left %> things left to do.</h2>
-      
+              <h2 class="itemsLeft"><%= user.userName %> has <%= left %> things left to do.</h2>
+   
           <a href="/logout">Logout</a>
  
     </div>

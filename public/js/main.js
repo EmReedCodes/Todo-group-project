@@ -6,6 +6,8 @@ const saveBtn = document.querySelectorAll('.save')
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('.check')
 
+
+
 // const todoComplete = document.querySelectorAll('.span.not')
 
 Array.from(editBtn).forEach((el)=>{
@@ -90,6 +92,8 @@ async function deleteTodo(){
     }
 }
 
+
+
 async function markComplete() {
   const todoId = this.parentNode.dataset.id
   try {
@@ -128,6 +132,7 @@ async function markComplete() {
 //         console.log(err)
 //     }
 // }
+
 
 const jsConfetti = new JSConfetti();
       document.querySelector(".check").addEventListener("click", async () => {
