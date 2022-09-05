@@ -9,15 +9,19 @@ module.exports = function(passport) {
             // options for the google strat
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: `http://localhost:${process.env.PORT}/auth-google/google/redirect`
+            callbackURL: `http://localhost:${process.env.PORT}/auth-google/google/redirect`,
+            passReqToCallback: true
         },
-        async (accessToken, refreshToken, profile, done) => {
+        async (req, accessToken, refreshToken, profile, done) => {
             console.log('passport callback function fired');
-            // console.log(profile);
+            console.log(profile);
+            console.log(profile.emails[0].value);
+    
 
             const newUser = {
                 googleId: profile.id,
                 userName: profile.displayName, 
+                email: profile.emails[0].value,
                 //displayName: profile.displayName,
                 //firstName: profile.name.givenName,
                 //lastName: profile.name.familyName,
