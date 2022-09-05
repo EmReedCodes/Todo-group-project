@@ -9,7 +9,7 @@ const todoItem = document.querySelectorAll('.check')
 
 
 // const todoComplete = document.querySelectorAll('.span.not')
-const todoPriority = document.querySelectorAll('#priority')
+const todoPriority = document.querySelectorAll('.priority')
 
 Array.from(todoPriority).forEach((el)=>{
     el.addEventListener('change', changeTodoPriority)
@@ -136,4 +136,22 @@ async function markIncomplete(){
     }
 }
 
-
+async function changeTodoPriority() {
+  console.log('changeTodoPriority')
+  const todoId = this.parentNode.dataset.id //change depending on how frontend is structured
+  const newPriority = "Normal"
+  try {
+    const response = await fetch('todos/changeTodoPriority', {
+      method: 'put',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId,
+        todoPriorityFromJSFile: newPriority
+      })
+    })
+    const data = await response.json()
+    console.log(data)
+    location.reload()
+  } catch (err) {
+    console.log(err)
+  }}

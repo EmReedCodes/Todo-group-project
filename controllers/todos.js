@@ -63,7 +63,8 @@ module.exports = {
     deleteTodo: async (req, res)=>{
         console.log(req.body.todoIdFromJSFile)
         try{
-            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
+            await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile},
+              Priority: Normal)
             console.log('Deleted Todo')
             res.json('Deleted It')
         }catch(err){
@@ -72,16 +73,14 @@ module.exports = {
     },
 
     changeTodoPriority: async (req, res) => {
-      console.log('change priority')
       try {
         await Todo.findOneAndUpdate(
           { _id: req.body.todoIdFromJSFile },
           {
             priority: req.body.todoPriorityFromJSFile
-          }
+          },
         )
-        console.log('Marked Incomplete')
-        res.json('Marked Incomplete')
+        console.log('Changed priority')
       } catch (err) {
         console.log(err)
       }

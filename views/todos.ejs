@@ -38,11 +38,13 @@
                       
                         <span class="fa-sharp fa-solid fa-check check" role="img" aria-label="Check"></span>
 
-                    <select id="priority" name="priority">
-                        <option value="low">High</option>
-                        <option value="medium" selected>Medium</option>
-                        <option value="high">Low</option>
-                    </select>
+                        <!-- Wrapping the select in a form causes a line break so it must be outside the form element -->
+                        <select class="priority" name="priority" form="priorityForm">
+                            <option value="low">Urgent</option>
+                            <option value="medium" selected>Normal</option>
+                            <option value="high">No Rush</option>
+                        </select>
+                        <form id="priorityForm"></form>
                             </li>
                     <% }) %>    
                     </ul> 

@@ -16,6 +16,7 @@ const TodoSchema = new mongoose.Schema({
     required: true
   }
 
+
 })
 
 module.exports = mongoose.model('Todo', TodoSchema)
