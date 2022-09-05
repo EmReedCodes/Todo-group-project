@@ -13,12 +13,13 @@ router.get('/', homeController.getIndex)
 //router.post('/signup', authGoogleController.postSignup)
 
 router.get('/google',
-    passport.authenticate('google', { scope: ['profile'] })); 
+    passport.authenticate('google', { scope: ['profile', 'email'] })); 
 
 // callback route for google to redirect to
-router.get('/google/redirect', passport.authenticate('google'), (req, res)=> {
+router.get('/google/redirect', passport.authenticate('google',{ 
     // res.send('you reached the callback URI from google');
-    res.redirect('/todos');
-});
+    successRedirect : '/todos',
+    failureRedirect : '/'
+}));
 
 module.exports = router
