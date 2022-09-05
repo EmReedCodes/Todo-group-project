@@ -31,38 +31,7 @@ display: initial;
   text-decoration: underline;
 }  
 
-/* CODE PEN CODE */
-/* body, html {
-  background-color: white;
-  height: 100%;
-  margin:0;
-  padding:0;
-  overflow: hidden;
-}
-#emitter {
-  visibility: hidden;
-  background-color: #222;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  top: 40%;
-  left: 0%;
-}
-.dot-container {
-  position:absolute;
-  left:0;
-  top:0;
-  overflow:visible;
-  z-index:5000;
-  pointer-events:none;
-}
-.dot {
-  position: absolute;
-  pointer-events: none; /*performance optimization*/
-}*/
 
-/*OTHER CODE PEN CODE*/
 .container {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -70,7 +39,7 @@ display: initial;
   display: grid;
   place-items: center;
 }
-/* .build {
+.build {
   font: inherit;
   box-sizing: border-box;
   margin: 0;
@@ -95,4 +64,4 @@ display: initial;
   box-shadow: none;
   outline: none;
   transform: translate3d(0.3em, 0.3em, 0);
-} */
+}
