@@ -1,3 +1,4 @@
+//const JSConfetti = require("js-confetti")
 
 //LEON'S CODE//
 const editBtn = document.querySelectorAll('.edit')
@@ -6,7 +7,8 @@ const saveBtn = document.querySelectorAll('.save')
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('.check')
 
-
+// const itemsLeft = document.querySelector('.itemsLeft')
+// console.log(itemsLeft)
 
 // const todoComplete = document.querySelectorAll('.span.not')
 
@@ -92,9 +94,10 @@ async function deleteTodo(){
     }
 }
 
-
+// /todos
 
 async function markComplete() {
+ 
   const todoId = this.parentNode.dataset.id
   try {
     const response = await fetch('todos/markComplete', {
@@ -105,11 +108,33 @@ async function markComplete() {
       })
     })
     const data = await response.json()
-    console.log(data)
+    
+    const response2 = await fetch('todos/getTasksLeft')
+    const data2 = await response2.json()
+    console.log(data2.count)
+    if(data2.count == 0){
+      const jsConfetti = new JSConfetti();
+      await jsConfetti.addConfetti({
+        emojis: ["🎉", "🥳", "👏", "⚡", "🎈"],
+        emojiSize: 100,
+        confettiNumber: 300,
+        confettiColors: [
+          "#ff0a54",
+          "#ff477e",
+          "#ff7096",
+          "#ff85a1",
+          "#fbb1bd",
+          "#f9bec7",
+        ],
+      });
+      //window.location.reload();
+    }
+
     location.reload()
   } catch (err) {
     console.log(err)
   }
+  
 }
 
 
@@ -133,21 +158,3 @@ async function markComplete() {
 //     }
 // }
 
-
-const jsConfetti = new JSConfetti();
-      document.querySelector(".check").addEventListener("click", async () => {
-        await jsConfetti.addConfetti({
-          emojis: ["🎉", "🥳", "👏", "⚡", "🎈"],
-          emojiSize: 100,
-          confettiNumber: 300,
-          confettiColors: [
-            "#ff0a54",
-            "#ff477e",
-            "#ff7096",
-            "#ff85a1",
-            "#fbb1bd",
-            "#f9bec7",
-          ],
-        });
-        window.location.reload();
-      });

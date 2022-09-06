@@ -13,6 +13,15 @@ module.exports = {
             console.log(err)
         }
     },
+    getTasksCount: async (req,res)=>{
+        console.log(req.user)
+        try{
+            const itemsLeft = await Todo.find({userId:req.user.id}).countDocuments({ completed: false})
+            res.status(200).send({count: itemsLeft})
+        }catch(err){
+            console.log(err)
+        }
+    },
     createTodo: async (req, res)=>{
         try{
             await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
