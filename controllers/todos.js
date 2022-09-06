@@ -64,7 +64,7 @@ module.exports = {
         console.log(req.body.todoIdFromJSFile)
         try{
             await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile},
-              Priority: Normal)
+              {Priority:Normal})
             console.log('Deleted Todo')
             res.json('Deleted It')
         }catch(err){

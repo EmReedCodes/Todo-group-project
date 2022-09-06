@@ -139,7 +139,16 @@ async function markIncomplete(){
 async function changeTodoPriority() {
   console.log('changeTodoPriority')
   const todoId = this.parentNode.dataset.id //change depending on how frontend is structured
-  const newPriority = "Normal"
+
+  let parentElm = event.target.closest("li")
+  //grabbing the element span we are on
+  let contentElm = parentElm.querySelector(".priority")
+  let selectElm = contentElm.childNode.
+  //console.log(todoID)
+  console.log(parentElm)
+  console.log(contentElm.innerText)
+  console.log(selectElm)
+ 
   try {
     const response = await fetch('todos/changeTodoPriority', {
       method: 'put',
