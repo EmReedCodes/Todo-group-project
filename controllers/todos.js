@@ -74,6 +74,7 @@ module.exports = {
 
     changeTodoPriority: async (req, res) => {
       try {
+        console.log(req.body)
         await Todo.findOneAndUpdate(
           { _id: req.body.todoIdFromJSFile },
           {

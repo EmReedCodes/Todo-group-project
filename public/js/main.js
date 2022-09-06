@@ -144,6 +144,7 @@ async function changeTodoPriority() {
   //grabbing the element span we are on
   let contentElm = parentElm.querySelector(".priority")
   let newPriority = contentElm.options[contentElm.selectedIndex].value;
+  console.log(newPriority)
  
   try {
     const response = await fetch('todos/changeTodoPriority', {
