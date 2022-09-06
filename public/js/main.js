@@ -1,10 +1,14 @@
 
+//LEON'S CODE//
 const editBtn = document.querySelectorAll('.edit')
 const saveBtn = document.querySelectorAll('.save')
 
 const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('span.not')
-const todoComplete = document.querySelectorAll('span.completed')
+const todoItem = document.querySelectorAll('.check')
+
+
+
+// const todoComplete = document.querySelectorAll('.span.not')
 
 Array.from(editBtn).forEach((el)=>{
     el.addEventListener('click', editTodo)
@@ -22,9 +26,9 @@ Array.from(todoItem).forEach(el => {
   el.addEventListener('click', markComplete)
 })
 
-Array.from(todoComplete).forEach(el => {
-  el.addEventListener('click', markIncomplete)
-})
+// Array.from(todoComplete).forEach(el => {
+//   el.addEventListener('click', markIncomplete)
+// })
 
 function editTodo(event) {
   //find closest li (I dont know why I couldnt use this.target but I had to use event.target)
@@ -88,6 +92,8 @@ async function deleteTodo(){
     }
 }
 
+
+
 async function markComplete() {
   const todoId = this.parentNode.dataset.id
   try {
@@ -105,24 +111,43 @@ async function markComplete() {
     console.log(err)
   }
 }
-//hello
-async function markIncomplete(){
-    const todoId = this.parentNode.dataset.id
+
+
+
+// async function markIncomplete(){
+//     const todoId = this.parentNode.dataset.id
     
-    try{
-        const response = await fetch('todos/markIncomplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
+//     try{
+//         const response = await fetch('todos/markIncomplete', {
+//             method: 'put',
+//             headers: {'Content-type': 'application/json'},
+//             body: JSON.stringify({
+//                 'todoIdFromJSFile': todoId
+//             })
+//         })
+//         const data = await response.json()
+//         console.log(data)
+//         location.reload()
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
 
 
+const jsConfetti = new JSConfetti();
+      document.querySelector(".check").addEventListener("click", async () => {
+        await jsConfetti.addConfetti({
+          emojis: ["🎉", "🥳", "👏", "⚡", "🎈"],
+          emojiSize: 100,
+          confettiNumber: 300,
+          confettiColors: [
+            "#ff0a54",
+            "#ff477e",
+            "#ff7096",
+            "#ff85a1",
+            "#fbb1bd",
+            "#f9bec7",
+          ],
+        });
+        window.location.reload();
+      });
