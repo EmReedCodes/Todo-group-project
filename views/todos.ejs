@@ -23,23 +23,56 @@
     <form action="/todos/createTodo" method='POST'>
       <input type="text" placeholder="Enter Todo Item" name='todoItem'>
       <input type="submit">
-  </form>
-        <ul>
-                <% todos.forEach( el => { %>
-  
-                        <li class='todoItem' data-id='<%=el._id%>'>
-                            <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
-  
-                    <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
-  
-                    <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
-  
-                  <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
-  
-                  <span class="fa-sharp fa-solid fa-check check" role="img" aria-label="Check"></span>
-                        </li>
-                <% }) %>
-                </ul>
+    </form>
+    /* julian start */
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Todo</th>
+                <th scope="col">Edit/Save</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Complete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% todos.forEach( (el, idx) => { %>
+                <tr class='todoItem'>
+                    <th scope="row"><%= idx + 1%></td>
+                    <td>
+                        <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
+                    </td>
+                    <td>
+                        <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
+                        <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
+                    </td>
+                    <td>
+                        <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
+                    </td>
+                    <td>
+                        <span class="fa-sharp fa-solid fa-check check" role="img" aria-label="Check"></span>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    /* julian end */
+    <ul>
+        <% todos.forEach( el => { %>
+
+        <li class='todoItem' data-id='<%=el._id%>'>
+            <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
+
+            <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
+
+            <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
+
+            <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
+
+            <span class="fa-sharp fa-solid fa-check check" role="img" aria-label="Check"></span>
+        </li>
+        <% }) %>
+    </ul>
   
           <h2 class="itemsLeft"><%= user.userName %> has <%= left %> things left to do.</h2>
       <a href="/logout">Logout</a>
