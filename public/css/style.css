@@ -2,7 +2,6 @@
 .todoItem .buttons .save {
   display: none;
 }
-
 .todoItem .content {
   margin: 0.5rem;
   transition: all 0.15s ease-in-out;
@@ -12,11 +11,9 @@
 .todoItem.editing .save {
   display: initial;
 }
-
 .todoItem.editing .edit {
   display: none;
 }
-
 .todoItem.editing .content {
   background: #184f45;
   padding: 0.5rem;
@@ -33,23 +30,19 @@
   display: inline-block;
   background: white;
   color: #444;
-  /* width: 190px; */
   border-radius: 5px;
   border: thin solid #888;
   box-shadow: 1px 1px 1px grey;
   white-space: nowrap;
-}
-
-#customBtn:hover {
   cursor: pointer;
 }
 
-span.label {
+.label {
   font-family: serif;
   font-weight: normal;
 }
 
-span.icon {
+.goog-icon {
   background: url("../assets/google.png") transparent 5px 50% no-repeat;
   display: inline-block;
   vertical-align: middle;
@@ -57,7 +50,7 @@ span.icon {
   height: 42px;
 }
 
-span.buttonText {
+.buttonText {
   display: inline-block;
   vertical-align: middle;
   padding-left: 42px;
