@@ -15,11 +15,10 @@ exports.getLogin = (req, res) => {
 
 exports.getSettings = (req, res) => {
   if (req.user) {
-    return res.redirect('/settings')
+    res.render('settings', {
+      title: 'Settings', user: req.user
+    })
   }
-  res.render('login', {
-    title: 'Login'
-  })
 }
 
 exports.postLogin = (req, res, next) => {
