@@ -37,6 +37,9 @@ function editTodo(event) {
 
 //Im looking to grab the value out of .content (el.todo)
 async function saveTodo(event) {
+  // setup loading
+  event.target.setAttribute('aria-busy', 'true')
+  
   let todoId     = event.target.closest('.todoItem').dataset.id
   let parentElm  = event.target.closest('td').previousElementSibling
   let contentElm = parentElm.querySelector('.content')
