@@ -1,5 +1,3 @@
-//const JSConfetti = require("js-confetti")
-
 //LEON'S CODE//
 const editBtn = document.querySelectorAll('.edit')
 const saveBtn = document.querySelectorAll('.save')
@@ -7,10 +5,6 @@ const saveBtn = document.querySelectorAll('.save')
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('.check')
 
-// const itemsLeft = document.querySelector('.itemsLeft')
-// console.log(itemsLeft)
-
-// const todoComplete = document.querySelectorAll('.span.not')
 
 Array.from(editBtn).forEach((el)=>{
     el.addEventListener('click', editTodo)
@@ -33,26 +27,21 @@ Array.from(todoItem).forEach(el => {
 // })
 
 function editTodo(event) {
-  //find closest li (I dont know why I couldnt use this.target but I had to use event.target)
-    let parentElm = event.target.closest("li")
+    let parentElm = event.target.closest("td").previousElementSibling
+
     let contentElm = parentElm.querySelector(".content")
-    //this is the magic that allows the super clean edit on page
-    contentElm.setAttribute("contenteditable", true)
-    //since edit was clicked add the class 'editing' now
+
+     contentElm.setAttribute("contenteditable", true)
     parentElm.classList.add("editing")
   }
   
 //Im looking to grab the value out of .content (el.todo)
 async function saveTodo(event) {
-  //this is grabbing the unique id for each document
-  const todoId = this.parentNode.dataset.id
-//since my save button is not a direct child I had to grab the closest li which would be the one to edit
-  let parentElm = event.target.closest("li")
-  //grabbing the element span we are on
+ let todoId = event.target.closest(".todoItem").dataset.id
+let parentElm = event.target.closest("td").previousElementSibling
   let contentElm = parentElm.querySelector(".content")
-  //now here is the actual text we want to send the DB
-  let content = contentElm.innerText
-  console.log(content)
+  console.log(contentElm)
+ let content = contentElm.innerText
   try{
     const response = await fetch('todos/saveTodo', {
         method: 'put',
@@ -62,22 +51,18 @@ async function saveTodo(event) {
             'todo': content
         })
     })
-   //if we get a 200 response back from db its been added and we can remove editing class from the 'li'
     if(response.status == 200){
-    //we received confirmation our word was replaced in db we can take off 'editing' 
         parentElm.classList.remove('editing')
         location.reload()
     }
-    
 }catch(err){
     console.log(err)
 }
 
 }
 
-async function deleteTodo(){
-    const todoId = this.parentNode.dataset.id
-    console.log(todoId)
+async function deleteTodo(event){
+  let todoId = event.target.closest(".todoItem").dataset.id
     try{
         const response = await fetch('todos/deleteTodo', {
             method: 'delete',
@@ -94,11 +79,10 @@ async function deleteTodo(){
     }
 }
 
-// /todos
+//if time create promise.all
+async function markComplete(event) {
+  let todoId = event.target.closest(".todoItem").dataset.id
 
-async function markComplete() {
- 
-  const todoId = this.parentNode.dataset.id
   try {
     const response = await fetch('todos/markComplete', {
       method: 'put',
@@ -108,9 +92,10 @@ async function markComplete() {
       })
     })
     const data = await response.json()
-    
+
     const response2 = await fetch('todos/getTasksLeft')
     const data2 = await response2.json()
+
     console.log(data2.count)
     if(data2.count == 0){
       const jsConfetti = new JSConfetti();

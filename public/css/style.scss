@@ -1,14 +1,49 @@
-.todoItem .save {
-    display: none;
+// .todoItem .save {
+//     display: none;
+//   }
+//   .todoItem .content {
+//     color: red;
+//     margin: 0.5rem;
+//     transition: all 0.15s ease-in-out;
+//     flex-grow: 1;
+//   }
+//   .todoItem.editing .save {
+//     color: blue;
+//     display: initial;
+//   }
+//   .todoItem.editing .edit {
+//     display: none;
+//   }
+
+.completed{
+  text-decoration: line-through;
+  color: gray;
+}
+  
+.todoItem {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+
+    .save {
+      display: none;
+    }
   }
-  .todoItem .content {
+// the animate
+  .content {
     margin: 0.5rem;
-    transition: all 0.15s ease-in-out;
-    flex-grow: 1;
   }
-  .todoItem.editing .save {
-    display: initial;
-  }
-  .todoItem.editing .edit {
-    display: none;
+
+  &.editing {
+    .save {
+      display: initial;
+    }
+    .edit {
+      display: none;
+    }
+
+    .content {
+      padding: 0.5rem;
+  
+    }
   }
