@@ -13,6 +13,15 @@ exports.getLogin = (req, res) => {
   })
 }
 
+exports.getSettings = (req, res) => {
+  if (req.user) {
+    return res.redirect('/settings')
+  }
+  res.render('login', {
+    title: 'Login'
+  })
+}
+
 exports.postLogin = (req, res, next) => {
   const validationErrors = []
 
