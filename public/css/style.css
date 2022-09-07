@@ -1,4 +1,9 @@
 /** @format */
+@media (min-width: 992px){
+.container {
+    max-width: 70%
+}
+}
 .task .buttons .save {
   display: none;
 }
@@ -140,4 +145,8 @@
 .list {
   display: flex;
   flex-direction: column-reverse;
+}
+
+article {
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
