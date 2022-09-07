@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const passport = require('passport');
+/** @format */
 
-//const authGoogleController = require('../../controllers/authGoogle') 
+const router   = require('express').Router()
+const passport = require('passport')
+
+//const authGoogleController = require('../../controllers/authGoogle')
 const homeController = require('../../controllers/home')
 const { ensureAuth, ensureGuest } = require('../../middleware/auth')
 
@@ -12,14 +14,16 @@ router.get('/', homeController.getIndex)
 //router.get('/signup', authGoogleController.getSignup)
 //router.post('/signup', authGoogleController.postSignup)
 
-router.get('/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] })); 
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
 
 // callback route for google to redirect to
-router.get('/google/redirect', passport.authenticate('google',{ 
+router.get(
+  '/google/redirect',
+  passport.authenticate('google', {
     // res.send('you reached the callback URI from google');
-    successRedirect : '/todos',
-    failureRedirect : '/'
-}));
+    successRedirect: '/todos',
+    failureRedirect: '/'
+  })
+)
 
 module.exports = router

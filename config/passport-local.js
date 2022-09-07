@@ -1,9 +1,9 @@
+/** @format */
 
-
-const LocalStrategy = require('passport-local').Strategy
+const LocalStrategy  = require('passport-local').Strategy
 const GoogleStrategy = require('passport-google-oauth20').Strategy
-const mongoose = require('mongoose')
-const User = require('../models/User')
+const mongoose       = require('mongoose')
+const User           = require('../models/User')
 
 module.exports = function (passport) {
   passport.use(

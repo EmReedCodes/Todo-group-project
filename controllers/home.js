@@ -1,3 +1,4 @@
+/** @format */
 
 module.exports = {
   getIndex: (req, res) => {
