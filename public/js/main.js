@@ -66,6 +66,8 @@ async function saveTodo(event) {
 }
 
 async function deleteTodo(event) {
+  event.target.setAttribute('aria-busy', 'true')
+
   let todoId = event.target.closest('.todoItem').dataset.id
   try {
     const response = await fetch('todos/deleteTodo', {
@@ -85,6 +87,8 @@ async function deleteTodo(event) {
 
 //if time create promise.all
 async function toggleComplete(event) {
+  event.target.setAttribute('aria-busy', 'true')
+
   console.log(event)
   let todoId = event.target.closest('.todoItem').dataset.id
 
