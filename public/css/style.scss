@@ -1,22 +1,19 @@
 /** @format */
+
 .todoItem .buttons .save {
   display: none;
 }
-
 .todoItem .content {
   margin: 0.5rem;
   transition: all 0.15s ease-in-out;
   flex-grow: 1;
 }
-
 .todoItem.editing .save {
   display: initial;
 }
-
 .todoItem.editing .edit {
   display: none;
 }
-
 .todoItem.editing .content {
   background: #184f45;
   padding: 0.5rem;
@@ -27,8 +24,8 @@
   text-decoration: line-through;
   color: gray;
 }
-
 /* Julian start */
+
 #customBtn {
   display: inline-block;
   background: white;
@@ -39,24 +36,20 @@
   box-shadow: 1px 1px 1px grey;
   white-space: nowrap;
 }
-
 #customBtn:hover {
   cursor: pointer;
 }
-
 span.label {
   font-family: serif;
   font-weight: normal;
 }
-
 span.icon {
-  background: url("../assets/google.png") transparent 5px 50% no-repeat;
+  background: url('../assets/google.png') transparent 5px 50% no-repeat;
   display: inline-block;
   vertical-align: middle;
   width: 42px;
   height: 42px;
 }
-
 span.buttonText {
   display: inline-block;
   vertical-align: middle;
@@ -65,7 +58,6 @@ span.buttonText {
   font-size: 14px;
   font-weight: bold;
   /* Use the Roboto font that is loaded in the <head> */
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
-
-/* Julian end *//*# sourceMappingURL=style.css.map */
+/* Julian end */

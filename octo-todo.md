@@ -1,5 +1,5 @@
+[!] [o] give styling to contenteditable names when editing tasks
 [!] [ ] move away from tables to scrollable list
-[!] [ ] give styling to contenteditable names when editing tasks
 [>] [ ] change from page submission to ajax call
 [>] [ ] total vs completed at the top of the list
     https://picocss.com/docs/progress.html
