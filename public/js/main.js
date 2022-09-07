@@ -32,7 +32,7 @@ function editTodo(event) {
   let contentElm = parentElm.querySelector('.content')
   console.log(contentElm)
   contentElm.setAttribute('contenteditable', true)
-  parentElm.closest('.todoItem').classList.add('editing')
+  contentElm.closest('.todoItem').classList.add('todo-editing')
 }
 
 //Im looking to grab the value out of .content (el.todo)
@@ -58,7 +58,8 @@ async function saveTodo(event) {
     })
     if (response.status == 200) {
       parentElm.classList.remove('editing')
-      location.reload()
+      // location.reload()
+      clientsideEditTodo(event)
     }
   } catch (err) {
     console.log(err)
@@ -79,7 +80,8 @@ async function deleteTodo(event) {
     })
     const data = await response.json()
     console.log(data)
-    location.reload()
+    // location.reload()
+    clientsideDeleteTodo(event)
   } catch (err) {
     console.log(err)
   }
@@ -89,7 +91,6 @@ async function deleteTodo(event) {
 async function toggleComplete(event) {
   event.target.setAttribute('aria-busy', 'true')
 
-  console.log(event)
   let todoId = event.target.closest('.todoItem').dataset.id
 
   try {
@@ -102,46 +103,51 @@ async function toggleComplete(event) {
     })
     const data = await response.json()
 
+    console.log("here")
     const response2 = await fetch('todos/getTasksLeft')
-    const data2 = await response2.json()
+    const data2     = await response2.json()
 
     console.log(data2.count)
     if (data2.count == 0) {
       const jsConfetti = new JSConfetti()
-      await jsConfetti.addConfetti({
+      jsConfetti.addConfetti({
         emojis: ['🎉', '🥳', '👏', '⚡', '🎈'],
-        emojiSize: 100,
-        confettiNumber: 300,
+        emojiSize: 40,
+        confettiNumber: 100,
         confettiColors: ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7']
       })
-      //window.location.reload();
     }
 
-    location.reload()
+    // location.reload()
+    clientsideToggleComplete(event)
   } catch (err) {
     console.log(err)
-  }
+  }image.png
 }
 
-// async function markIncomplete(){
-//     const todoId = this.parentNode.dataset.id
+function clientsideToggleComplete(event) {
+  event.target.setAttribute('aria-busy', 'false')
 
-//     try{
-//         const response = await fetch('todos/markIncomplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
+  let elm = event.target.closest('.todoItem')
 
+  elm.classList.toggle('todo-completed')
+}
+
+function clientsideDeleteTodo(event) {
+  event.target.setAttribute('aria-busy', 'false')
+  let elm = event.target.closest('.todoItem')
+
+  elm.remove()
+}
+
+function clientsideEditTodo(event) {
+  event.target.setAttribute('aria-busy', 'false')
+
+  let elm = event.target.closest('.todoItem')
+
+  elm.querySelector('[contenteditable]').setAttribute('contenteditable', false)
+  elm.classList.toggle('todo-editing')
+}
 
 function toggleLightDark(setTheme = null) {
   // get elm and current theme

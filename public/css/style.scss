@@ -22,10 +22,14 @@
   .button {
     height: 100%;
     cursor: pointer;
+
+    .icon {
+      pointer-events: none;
+    }
   }
 } 
 
-.todoItem.editing {
+.todoItem.todo-editing {
 
   .save {
     display: block;
@@ -46,11 +50,11 @@
   .edit {
     display: none;
   }
-}
 
-.completed {
-  text-decoration: line-through;
-  color: gray;
+  .content {
+    text-decoration: line-through;
+    color: gray;
+  }
 }
 
 
