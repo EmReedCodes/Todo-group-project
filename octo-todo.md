@@ -1,4 +1,3 @@
-[!] [o] give styling to contenteditable names when editing tasks
 [!] [ ] move away from tables to scrollable list
 [>] [ ] change from page submission to ajax call
 [>] [ ] total vs completed at the top of the list
@@ -13,5 +12,6 @@
 [*] [?] change Todos google project name to `todone`
 [*] [?] add client-side filtering
 
+[!] [x] give styling to contenteditable names when editing tasks
 [!] [x] add day/night toggle to user dropdown top right
 [!] [x] move logout to user dropdown top right
