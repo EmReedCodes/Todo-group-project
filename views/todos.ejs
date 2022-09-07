@@ -48,7 +48,7 @@
     <table>
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <!-- <th scope="col">#</th> -->
           <th scope="col">Todo</th>
           <th scope="col">Edit/Save</th>
           <th scope="col">Delete</th>
@@ -59,7 +59,7 @@
         <!-- @todo clean up this wet code -->
         <% todos.filter(el => el.completed == false).forEach( (el, idx) => { %>
           <tr class='todoItem <%= el.completed === true ? 'todo-completed' : '' %>' data-id='<%=el._id%>'>
-            <th scope="row"><%= idx + 1%></th>
+            <!-- <th scope="row"><%= idx + 1%></th> -->
             <td>
               <div class='<%= el.completed === true ? 'completed' : 'content' %>'><%= el.todo %></div>
             </td>
@@ -85,7 +85,7 @@
         <% }) %>
         <% todos.filter(el => el.completed == true).forEach( (el, idx) => { %>
           <tr class='todoItem <%= el.completed === true ? 'todo-completed' : '' %>' data-id='<%=el._id%>'>
-            <th scope="row"><%= idx + 1%></th>
+            <!-- <th scope="row"><%= idx + 1%></th> -->
             <td>
               <div class='<%= el.completed === true ? 'completed' : 'content' %>'><%= el.todo %></div>
             </td>
