@@ -30,7 +30,7 @@ function editTodo(event) {
     let parentElm = event.target.closest("td").previousElementSibling
 
     let contentElm = parentElm.querySelector(".content")
-
+  console.log(contentElm)
      contentElm.setAttribute("contenteditable", true)
     parentElm.classList.add("editing")
   }
