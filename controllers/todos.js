@@ -1,12 +1,22 @@
+
+
 const Todo = require('../models/Todo')
 
 module.exports = {
     getTodos: async (req,res)=>{
-        console.log(req.user)
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
             res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getTasksCount: async (req,res)=>{
+        console.log(req.user)
+        try{
+            const itemsLeft = await Todo.find({userId:req.user.id}).countDocuments({ completed: false})
+            res.status(200).send({count: itemsLeft})
         }catch(err){
             console.log(err)
         }
@@ -40,6 +50,22 @@ module.exports = {
             res.json('Marked Incomplete')
         }catch(err){
             console.log(err)
+        }
+    },
+    //need to send over the new text content
+    saveTodo: async(req, res) => {
+        try{
+            await Todo.findOneAndUpdate
+            ({_id: req.body.todoIdFromJSFile},
+            {
+            //sending over text content to db
+                todo: req.body.todo
+            })
+            res.status(200).send({msg: "a-ok!"})
+        }
+        catch(err){
+            console.log(err)
+            res.status(400).send(err)
         }
     },
     deleteTodo: async (req, res)=>{
