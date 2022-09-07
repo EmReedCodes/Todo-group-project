@@ -19,13 +19,13 @@ module.exports = function (passport) {
         console.log('passport callback function fired')
 
         const newUser = {
-          googleId: profile.id,
-          userName: profile.displayName,
-          email: profile.emails[0].value
-          //displayName: profile.displayName,
-          //firstName: profile.name.givenName,
-          //lastName: profile.name.familyName,
-          //image: profile.photos[0].value
+          googleId   : profile.id,
+          userName   : profile.displayName,
+          email      : profile.emails[0].value
+          // displayName: profile.displayName,
+          // firstName  : profile.name.givenName,
+          // lastName   : profile.name.familyName,
+          // image      : profile.photos[0].value
         }
         try {
           let user = await User.findOne({ googleId: profile.id })
