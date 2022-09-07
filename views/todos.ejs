@@ -48,7 +48,7 @@
       </thead>
       <tbody>
         <% todos.forEach( (el, idx) => { %>
-          <tr class='todoItem' data-id='<%=el._id%>'>
+          <tr class='todoItem <%= el.completed === true ? 'todo-completed' : '' %>' data-id='<%=el._id%>'>
             <th scope="row"><%= idx + 1%></th>
             <td>
               <div class='<%= el.completed === true ? 'completed' : 'content' %>'><%= el.todo %></div>
