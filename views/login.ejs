@@ -2,55 +2,46 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+    <br />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/ddd77854d8.js" crossorigin="anonymous"></script>
+    <title>Todone</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
-          <br>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://kit.fontawesome.com/ddd77854d8.js" crossorigin="anonymous"></script>
-  <title>Todone</title>
-</head>
-
-<body>
-  <main class="container">
-    <% if (locals.messages.errors) { %>
-      <% messages.errors.forEach( el=> { %>
-        <div class="alert alert-danger">
-          <%= el.msg %>
-        </div>
-        <% }) %>
-          <% } %>
-            <% if (locals.messages.info) { %>
-              <% messages.info.forEach( el=> { %>
-                <div class="alert alert-danger">
-                  <%= el.msg %>
-                </div>
-                <% }) %>
-                  <% } %>
-                    <form action="/login" method="POST">
-                      <input type="email" name="email" placeholder="Email">
-                      <input type="password" name="password" placeholder="Password">
-                      <input type="submit">
-                      <h3 style="text-align: center">or</h3>
-                      <a href="../auth-google/google" style="text-align:center;">
-                        <div id="gSignInWrapper" class="button">
-                          <!-- <span class="label">Sign in with:</span> -->
-                          <div id="customBtn" class="customGPlusSignIn">
-                            <span class="icon"></span>
-                            <span class="buttonText">Sign in with Google</span>
-                          </div>
-                        </div>
-                      </a>
-                    </form>
-                    <!-- <a href="../auth-google/google">
+  <body>
+    <main class="container">
+      <nav>
+        <h1><a href="/todos">Todos</a></h1>
+      </nav>
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el=> { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %> <% if (locals.messages.info) { %> <% messages.info.forEach( el=> { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %>
+      <form action="/login" method="POST">
+        <input type="email" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
+        <input type="submit" />
+        <h3 style="text-align: center">or</h3>
+        <a href="../auth-google/google" style="text-align: center">
+          <div id="gSignInWrapper" class="button">
+            <!-- <span class="label">Sign in with:</span> -->
+            <div id="customBtn" class="customGPlusSignIn">
+              <span class="goog-icon"></span>
+              <span class="buttonText">Sign in with Google</span>
+            </div>
+          </div>
+        </a>
+      </form>
+      <!-- <a href="../auth-google/google">
           <button name="Google">Google</button>
       </a> -->
-
-  </main>
-</body>
-
+    </main>
+  </body>
 </html>

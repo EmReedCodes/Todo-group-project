@@ -1,8 +1,11 @@
-const express = require('express')
-const router = express.Router()
-const authLocalController = require('../../controllers/authLocal') 
-const homeController = require('../../controllers/home')
-const { ensureAuth, ensureGuest } = require('../../middleware/auth')
+/** @format */
+
+const express                     = require('express')
+const router                      = express.Router()
+const authLocalController         = require('../../controllers/authLocal')
+const homeController              = require('../../controllers/home')
+
+// const { ensureAuth, ensureGuest } = require('../../middleware/auth')
 
 router.get('/', homeController.getIndex)
 router.get('/login', authLocalController.getLogin)
