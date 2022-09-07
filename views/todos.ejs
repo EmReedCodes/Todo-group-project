@@ -35,7 +35,16 @@
       <input type="text" placeholder="Enter Todo Item" name='todoItem'>
       <input type="submit">
     </form>
-
+    <section>
+      <div class="pogress">
+        <div class="nums">
+          <%= total - left %> / <%= total %>
+        </div>
+        <div class="bar">
+          <progress value="<%= total - left %>" max="<%= total %>"></progress>
+        </div>
+      </div>
+    </section>
     <table>
       <thead>
         <tr>
