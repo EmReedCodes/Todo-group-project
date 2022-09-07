@@ -11,7 +11,7 @@ router.get('/getTasksLeft', todosController.getTasksCount)
 
 router.post('/createTodo', todosController.createTodo)
 
-router.put('/markComplete', todosController.markComplete)
+router.put('/toggleComplete', todosController.toggleComplete)
 
 router.put('/markIncomplete', todosController.markIncomplete)
 

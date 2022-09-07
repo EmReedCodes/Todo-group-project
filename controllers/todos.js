@@ -30,13 +30,11 @@ module.exports = {
       console.log(err)
     }
   },
-  markComplete: async (req, res) => {
+  toggleComplete: async (req, res) => {
     try {
       await Todo.findOneAndUpdate(
         { _id: req.body.todoIdFromJSFile },
-        {
-          completed: true
-        }
+        [{ $set: { completed: { $not: "$completed" } } }]
       )
       console.log('Marked Complete')
       res.json('Marked Complete')

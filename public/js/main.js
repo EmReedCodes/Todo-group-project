@@ -20,7 +20,7 @@ Array.from(deleteBtn).forEach(el => {
 })
 
 Array.from(todoItem).forEach(el => {
-  el.addEventListener('click', markComplete)
+  el.addEventListener('click', toggleComplete)
 })
 
 // Array.from(todoComplete).forEach(el => {
@@ -84,11 +84,12 @@ async function deleteTodo(event) {
 }
 
 //if time create promise.all
-async function markComplete(event) {
+async function toggleComplete(event) {
+  console.log(event)
   let todoId = event.target.closest('.todoItem').dataset.id
 
   try {
-    const response = await fetch('todos/markComplete', {
+    const response = await fetch('todos/toggleComplete', {
       method: 'put',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
