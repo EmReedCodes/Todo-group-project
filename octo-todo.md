@@ -8,6 +8,8 @@
 [ ] [ ] set max-width login page for desktop
 [ ] [ ] error when editing completed tasks
 [ ] [?] undo marking tasks as complete
+[*] [ ] move to nerdicons
+[*] [ ] move to figma colorset
 [*] [?] change Todos google project name to `todone`
 [*] [?] add client-side filtering
 

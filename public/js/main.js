@@ -32,7 +32,7 @@ function editTodo(event) {
   let contentElm = parentElm.querySelector('.content')
   console.log(contentElm)
   contentElm.setAttribute('contenteditable', true)
-  parentElm.classList.add('editing')
+  parentElm.closest('.todoItem').classList.add('editing')
 }
 
 //Im looking to grab the value out of .content (el.todo)

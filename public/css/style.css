@@ -2,10 +2,10 @@
 .todoItem .buttons .save {
   display: none;
 }
-.todoItem .content {
-  margin: 0.5rem;
-  transition: all 0.15s ease-in-out;
+.todoItem .content, .todoItem .completed {
+  padding: 0.5rem;
   flex-grow: 1;
+  transition: all 0.15s ease-in-out;
 }
 
 .todoItem.editing .save {
@@ -15,8 +15,8 @@
   display: none;
 }
 .todoItem.editing .content {
+  cursor: text;
   background: #184f45;
-  padding: 0.5rem;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 

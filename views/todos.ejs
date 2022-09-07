@@ -51,9 +51,9 @@
           <tr class='todoItem' data-id='<%=el._id%>'>
             <th scope="row"><%= idx + 1%></th>
             <td>
-              <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
+              <div class='<%= el.completed === true ? 'completed' : 'content' %>'><%= el.todo %></div>
             </td>
-            <td>
+            <td class="buttons">
               <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
               <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
             </td>
