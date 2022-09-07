@@ -2,52 +2,76 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  
+    <title>Todone</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/ddd77854d8.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
-</head>
-<body>
+  </head>
 
-    <div class="container">
-      
-        <h1>Todos</h1>
+  <body>
 
-        <form action="/todos/createTodo" method='POST'>
-          <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-          <input type="submit">
-      </form>
-
-            <ul>
-                    <% todos.forEach( el => { %>
-                      
-                            <li class='todoItem' data-id='<%=el._id%>'>
-                                <span class='<%= el.completed === true ? 'completed' : 'not content' %>'><%= el.todo %></span>
-                                
-                        <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
-                      
-                        <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
-                      
-                      <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
-                      
-                      <span class="fa-sharp fa-solid fa-check check" role="img" aria-label="Check"></span>
-                            </li>
-                    <% }) %>    
-                    </ul> 
-               
-              <h2 class="itemsLeft"><%= user.userName %> has <%= left %> things left to do.</h2>
-   
-          <a href="/logout">Logout</a>
- 
-    </div>
+  <main class="container">
     
-    <script src="js/main.js"></script>
-</body>
-</html>
+    <nav>
+      <h1><a href="/todos">Todos</a></h1>
+      <div class="user-info">
+        <details role="list" dir="rtl">
+          <summary aria-haspopup="listbox" role="link"><%= user.userName %></summary>
+          <ul role="listbox">
+            <li onclick="toggleLightDark()"><a href="#"><span class="theme"></span> theme</a></li>
+            <li><a><hr></a></li>
+            <li><a href="/logout">Log out</a></li>
+          </ul>
+        </details>
+      </div>
+    </nav>
+    <form action="/todos/createTodo" method='POST'>
+      <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+      <input type="submit">
+    </form>
+    <section>
+      <div class="progress">
+        <div class="nums">
+          <%= total - left %> / <%= total %>
+        </div>
+        <div class="bar">
+          <progress value="<%= total - left %>" max="<%= total %>"></progress>
+        </div>
+      </div>
+    </section>
+    <section class="list">
+      <% todos.forEach( (el, idx) => { %>
+        <div class="task <%= el.completed === true ? 'todo-completed' : '' %>" data-id='<%=el._id%>'>
+          <div class="task-name"><%= el.todo %></div>
+          <!-- <div class="task-description">lorem ipsum dolor amet</div> -->
+          <div class="buttons">
+            <div class="button edit">
+              <span class="fa-solid fa-pen-to-square icon" role="img" aria-label="Edit"></span>
+            </div>
+            <div class="button save">
+              <span class="fa-solid fa-save icon" role="img" aria-label="Save"></span>
+            </div>
+            <div class="button delete">
+              <span class="fa-solid fa-trash-can icon" role="img" aria-label="Delete"></span>
+            </div>
+            <div class="button check">
+              <span class="fa-sharp fa-solid fa-check icon" role="img" aria-label="Check"></span>
+            </div>
+          </div>
+      </div>
+       
+      <% }) %>
+    </section>
+        
+  </main>
 
-<!-- I'm here -->
+      
+    <script src="js/main.js"></script>
+  </body>
+</html>

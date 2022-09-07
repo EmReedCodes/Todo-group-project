@@ -1,29 +1,26 @@
+/** @format */
 
 //LEON'S CODE//
-const editBtn = document.querySelectorAll('.edit')
-const saveBtn = document.querySelectorAll('.save')
+const editBtn   = document.querySelectorAll('.edit')
+const saveBtn   = document.querySelectorAll('.save')
 
-const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('.check')
+const deleteBtn = document.querySelectorAll('.delete')
+const todoItem  = document.querySelectorAll('.check')
 
-
-
-// const todoComplete = document.querySelectorAll('.span.not')
-
-Array.from(editBtn).forEach((el)=>{
-    el.addEventListener('click', editTodo)
+Array.from(editBtn).forEach(el => {
+  el.addEventListener('click', editTodo)
 })
 
-Array.from(saveBtn).forEach((el)=>{
-    el.addEventListener('click', saveTodo)
+Array.from(saveBtn).forEach(el => {
+  el.addEventListener('click', saveTodo)
 })
 
-Array.from(deleteBtn).forEach((el)=>{
-    el.addEventListener('click', deleteTodo)
+Array.from(deleteBtn).forEach(el => {
+  el.addEventListener('click', deleteTodo)
 })
 
 Array.from(todoItem).forEach(el => {
-  el.addEventListener('click', markComplete)
+  el.addEventListener('click', toggleComplete)
 })
 
 // Array.from(todoComplete).forEach(el => {
@@ -31,73 +28,72 @@ Array.from(todoItem).forEach(el => {
 // })
 
 function editTodo(event) {
-  //find closest li (I dont know why I couldnt use this.target but I had to use event.target)
-    let parentElm = event.target.closest("li")
-    let contentElm = parentElm.querySelector(".content")
-    //this is the magic that allows the super clean edit on page
-    contentElm.setAttribute("contenteditable", true)
-    //since edit was clicked add the class 'editing' now
-    parentElm.classList.add("editing")
-  }
-  
-//Im looking to grab the value out of .content (el.todo)
+  let parentElm  = event.target.closest('.task')
+  let contentElm = parentElm.querySelector('.task-name')
+
+  contentElm.setAttribute('contenteditable', true)
+  parentElm.classList.add('todo-editing')
+}
+
+//Im looking to grab the value out of .task-name (el.todo)
 async function saveTodo(event) {
-  //this is grabbing the unique id for each document
-  const todoId = this.parentNode.dataset.id
-//since my save button is not a direct child I had to grab the closest li which would be the one to edit
-  let parentElm = event.target.closest("li")
-  //grabbing the element span we are on
-  let contentElm = parentElm.querySelector(".content")
-  //now here is the actual text we want to send the DB
+  // setup loading
+  event.target.setAttribute('aria-busy', 'true')
+  
+  let todoId     = event.target.closest('.task').dataset.id
+  let parentElm  = event.target.closest('.task')
+  let contentElm = parentElm.querySelector('.task-name')
+
+
   let content = contentElm.innerText
-  console.log(content)
-  try{
-    const response = await fetch('todos/saveTodo', {
-        method: 'put',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify({
-            'todoIdFromJSFile': todoId,
-            'todo': content
-        })
-    })
-   //if we get a 200 response back from db its been added and we can remove editing class from the 'li'
-    if(response.status == 200){
-    //we received confirmation our word was replaced in db we can take off 'editing' 
-        parentElm.classList.remove('editing')
-        location.reload()
-    }
-    
-}catch(err){
-    console.log(err)
-}
-
-}
-
-async function deleteTodo(){
-    const todoId = this.parentNode.dataset.id
-    console.log(todoId)
-    try{
-        const response = await fetch('todos/deleteTodo', {
-            method: 'delete',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
-
-
-
-async function markComplete() {
-  const todoId = this.parentNode.dataset.id
   try {
-    const response = await fetch('todos/markComplete', {
+    const response = await fetch('todos/saveTodo', {
+      method: 'put',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId,
+        todo: content
+      })
+    })
+    if (response.status == 200) {
+      parentElm.classList.remove('editing')
+      // location.reload()
+      clientsideEditTodo(event)
+    }
+  } catch (err) {
+    console.err(err)
+  }
+}
+
+async function deleteTodo(event) {
+  event.target.setAttribute('aria-busy', 'true')
+
+  let todoId = event.target.closest('.task').dataset.id
+  try {
+    const response = await fetch('todos/deleteTodo', {
+      method: 'delete',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId
+      })
+    })
+    const data = await response.json()
+
+    // location.reload()
+    clientsideDeleteTodo(event)
+  } catch (err) {
+    console.err(err)
+  }
+}
+
+//if time create promise.all
+async function toggleComplete(event) {
+  event.target.setAttribute('aria-busy', 'true')
+
+  let todoId = event.target.closest('.task').dataset.id
+
+  try {
+    const response = await fetch('todos/toggleComplete', {
       method: 'put',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
@@ -105,49 +101,114 @@ async function markComplete() {
       })
     })
     const data = await response.json()
-    console.log(data)
-    location.reload()
+
+    const response2 = await fetch('todos/getTasksLeftCount')
+    const data2     = await response2.json()
+
+    if (data2.count == 0) {
+      const jsConfetti = new JSConfetti()
+      jsConfetti.addConfetti({
+        emojis: ['🎉', '🥳', '👏', '⚡', '🎈'],
+        emojiSize: 40,
+        confettiNumber: 100,
+        confettiColors: ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7']
+      })
+    }
+
+    // location.reload()
+    clientsideToggleComplete(event, data2.count)
   } catch (err) {
-    console.log(err)
+    console.err(err)
   }
 }
 
+async function clientsideToggleComplete(event, leftCount) {
+  event.target.setAttribute('aria-busy', 'false')
 
+  let elm = event.target.closest('.task')
 
-// async function markIncomplete(){
-//     const todoId = this.parentNode.dataset.id
-    
-//     try{
-//         const response = await fetch('todos/markIncomplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
+  elm.classList.toggle('todo-completed')
+  
+  updateProgress()
+}
 
+async function clientsideDeleteTodo(event) {
+  event.target.setAttribute('aria-busy', 'false')
+  let elm = event.target.closest('.task')
+  
+  elm.remove()
 
-const jsConfetti = new JSConfetti();
-      document.querySelector(".check").addEventListener("click", async () => {
-        await jsConfetti.addConfetti({
-          emojis: ["🎉", "🥳", "👏", "⚡", "🎈"],
-          emojiSize: 100,
-          confettiNumber: 300,
-          confettiColors: [
-            "#ff0a54",
-            "#ff477e",
-            "#ff7096",
-            "#ff85a1",
-            "#fbb1bd",
-            "#f9bec7",
-          ],
-        });
-        window.location.reload();
-      });
+  updateProgress()
+}
+
+function clientsideEditTodo(event) {
+  event.target.setAttribute('aria-busy', 'false')
+
+  let elm = event.target.closest('.task')
+
+  elm.querySelector('[contenteditable]').setAttribute('contenteditable', false)
+  elm.classList.toggle('todo-editing')
+}
+
+async function updateProgress() {
+  let progBar = document.querySelector('.progress .bar progress')
+  let progNum = document.querySelector('.progress .nums')
+
+  const leftCount  = (await (await fetch('todos/getTasksLeftCount')).json()).count
+  const totalCount = (await (await fetch('todos/getTotalTasksCount')).json()).count
+  const completed  = totalCount - leftCount
+
+  progBar.setAttribute('value', completed)
+  progBar.setAttribute('max', totalCount)
+
+  progNum.innerText = `${completed} / ${totalCount}`
+
+}
+
+function toggleLightDark(setTheme = null) {
+  // get elm and current theme
+  let root     = document.querySelector('html')
+  let theme    = root.getAttribute('data-theme')
+  let themeElm = document.querySelector(".user-info .theme")
+
+  // set new theme
+  let newTheme = ''
+  let inverse = ''
+
+  if (setTheme != null) {
+    newTheme = setTheme
+  } else {
+    if (theme == 'light') {
+      newTheme = 'dark'
+    } else {
+      newTheme = 'light'
+    }
+  }
+
+  if (newTheme == 'light') {
+    inverse  = 'dark'
+  } else {
+    inverse  = 'light'
+  }
+
+  root.setAttribute('data-theme', newTheme)
+  themeElm.innerText = inverse
+
+  // save to storage
+  storeTheme(newTheme)
+}
+
+function loadLightDark() {
+  let loadedTheme = readTheme()
+  toggleLightDark(loadedTheme)
+}
+
+function readTheme() {
+  return localStorage.getItem('theme')
+}
+
+function storeTheme(theme) {
+  localStorage.setItem('theme', theme)
+}
+
+loadLightDark()

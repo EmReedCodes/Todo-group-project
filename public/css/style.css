@@ -1,69 +1,143 @@
-.todoItem .save {
+/** @format */
+.task .buttons .save {
   display: none;
 }
-
-.todoItem .content  {
-margin: 0.5rem;
+.task .content, .task .completed {
+  padding: 0.5rem;
+  flex-grow: 1;
   transition: all 0.15s ease-in-out;
-flex-grow: 1;
+}
+.task .buttons {
+  height: 100%;
+}
+.task .button {
+  height: 100%;
+  cursor: pointer;
+}
+.task .button .icon {
+  pointer-events: none;
 }
 
-.todoItem.editing .save  {
-display: initial;
+.task.todo-editing .save {
+  display: block;
 }
-.not {
-  text-decoration: underline;
-}
-
-.todoItem.editing .edit {
+.task.todo-editing .edit {
   display: none;
-}/*# sourceMappingURL=style.css.map */
-
-
-/*LEON'S CODE*/
- h1{
-  color: red;
 }
-.completed{
-  text-decoration: line-through;
-  color: gray;
+.task.todo-editing .task-name {
+  cursor: text;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: rgba(250, 250, 255, 0.9);
 }
-.not{
-  text-decoration: underline;
-}  
 
-
-/* confetti css */
-.container {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
+.task.todo-completed {
+  order: -1;
+  background: rgba(250, 250, 255, 0.3);
 }
-.build {
-  font: inherit;
-  box-sizing: border-box;
-  margin: 0;
-  font-size: 3rem;
-  padding: 0.3em 1.5em;
-  font-weight: bold;
-  border: none;
-  background-color: hsl(211, 100%, 36%);
-  color: hsl(211, 100%, 98%);
-  box-shadow: 0.3em 0.3em hsl(211, 100%, 16%);
-  transition: transform 250ms ease-in-out,
-    box-shadow 250ms ease-in-out 10ms;
+.task.todo-completed .edit {
+  display: none;
+}
+.task.todo-completed .task-name {
+  color: darkgray;
+  position: relative;
+}
+.task.todo-completed .task-name:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(169, 169, 169, 0.5);
+}
+
+/* Julian start */
+#customBtn {
+  display: inline-block;
+  background: white;
+  color: #444;
+  border-radius: 5px;
+  border: thin solid #888;
+  box-shadow: 1px 1px 1px grey;
+  white-space: nowrap;
   cursor: pointer;
 }
 
-.build:hover {
-  box-shadow: 0.2em 0.2em hsl(211, 100%, 16%);
-  transform: translate3d(0.1em, 0.1em, 0);
+.label {
+  font-family: serif;
+  font-weight: normal;
 }
 
-.build:focus {
-  box-shadow: none;
-  outline: none;
-  transform: translate3d(0.3em, 0.3em, 0);
+.goog-icon {
+  background: url("../assets/google.png") transparent 5px 50% no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  width: 42px;
+  height: 42px;
 }
+
+.buttonText {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 42px;
+  padding-right: 42px;
+  font-size: 14px;
+  font-weight: bold;
+  /* Use the Roboto font that is loaded in the <head> */
+  font-family: "Roboto", sans-serif;
+}
+
+/* Julian end */
+.task {
+  padding: 0.5rem;
+  background: rgba(250, 250, 255, 0.7);
+  color: rgb(10, 10, 30);
+  margin: 0.25rem;
+  border-radius: 10px;
+  display: grid;
+  grid-template-areas: "name buttons";
+  grid-template-columns: auto -webkit-min-content;
+  grid-template-columns: auto min-content;
+}
+.task > * {
+  white-space: nowrap;
+  padding: 0.5rem;
+}
+.task .buttons {
+  grid-area: buttons;
+  display: flex;
+}
+.task .buttons .button {
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+}
+.task .task-name {
+  grid-area: name;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  transition: all 0.15s ease-in-out;
+}
+.task .task-description {
+  font-style: italic;
+  grid-area: desc;
+}
+.task .brackets {
+  grid-area: brackets;
+  display: flex;
+  font-family: monospace;
+}
+.task .brackets > *:before {
+  content: "[";
+}
+.task .brackets > *:after {
+  content: "]";
+}
+
+.list {
+  display: flex;
+  flex-direction: column-reverse;
+}/*# sourceMappingURL=style.css.map */
