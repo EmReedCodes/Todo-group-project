@@ -28,16 +28,15 @@ Array.from(todoItem).forEach(el => {
 
 function editTodo(event) {
     let parentElm = event.target.closest("td").previousElementSibling
-
     let contentElm = parentElm.querySelector(".content")
-  console.log(contentElm)
+    console.log(contentElm)
      contentElm.setAttribute("contenteditable", true)
     parentElm.classList.add("editing")
   }
   
 //Im looking to grab the value out of .content (el.todo)
 async function saveTodo(event) {
- let todoId = event.target.closest(".todoItem").dataset.id
+let todoId = event.target.closest(".todoItem").dataset.id
 let parentElm = event.target.closest("td").previousElementSibling
   let contentElm = parentElm.querySelector(".content")
   console.log(contentElm)
