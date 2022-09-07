@@ -54,14 +54,22 @@
               <div class='<%= el.completed === true ? 'completed' : 'content' %>'><%= el.todo %></div>
             </td>
             <td class="buttons">
-              <span class="fa-solid fa-pen-to-square edit" role="img" aria-label="Edit"></span>
-              <span class="fa-solid fa-save save" role="img" aria-label="Save"></span>
+              <div class="button edit">
+                <span class="fa-solid fa-pen-to-square" role="img" aria-label="Edit"></span>
+              </div>
+              <div class="button save">
+                <span class="fa-solid fa-save" role="img" aria-label="Save"></span>
+              </div>
             </td>
             <td>
-              <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
+              <div class="button delete">
+                <span class="fa-solid fa-trash-can del" role="img" aria-label="Delete"></span>
+              </div>
             </td>
             <td>
-              <span class="fa-sharp fa-solid fa-check check" role="img" aria-label="Check"></span>
+              <div class="button check">
+                <span class="fa-sharp fa-solid fa-check" role="img" aria-label="Check"></span>
+              </div>
             </td>
           </tr>
         <% }) %>

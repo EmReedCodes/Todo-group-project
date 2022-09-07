@@ -15,12 +15,20 @@
 
     @include animate;
   }
+
+  .buttons {
+    height: 100%;
+  }
+  .button {
+    height: 100%;
+    cursor: pointer;
+  }
 } 
 
 .todoItem.editing {
 
   .save {
-    display: initial;
+    display: block;
   }
   
   .edit {
