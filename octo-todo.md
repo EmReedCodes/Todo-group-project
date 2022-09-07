@@ -1,5 +1,3 @@
-[!] [o] move logout to user dropdown top right
-[!] [o] add day/night toggle to user dropdown top right
 [!] [ ] move away from tables to scrollable list
 [!] [ ] give styling to contenteditable names when editing tasks
 [>] [ ] change from page submission to ajax call
@@ -12,3 +10,6 @@
 [ ] [?] undo marking tasks as complete
 [*] [?] change Todos google project name to `todone`
 [*] [?] add client-side filtering
+
+[!] [x] add day/night toggle to user dropdown top right
+[!] [x] move logout to user dropdown top right

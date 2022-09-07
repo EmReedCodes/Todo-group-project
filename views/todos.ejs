@@ -24,9 +24,9 @@
         <details role="list" dir="rtl">
           <summary aria-haspopup="listbox" role="link"><%= user.userName %></summary>
           <ul role="listbox">
-            <li><a>Toggle dark theme</a></li>
+            <li onclick="toggleLightDark()"><a href="#"><span class="theme"></span> theme</a></li>
             <li><a><hr></a></li>
-            <li><a>Log out</a></li>
+            <li><a href="/logout">Log out</a></li>
           </ul>
         </details>
       </div>
@@ -70,7 +70,6 @@
   
   
     <h2 class="itemsLeft"><%= user.userName %> has <%= left %> things left to do.</h2>
-    <a href="/logout">Logout</a>
   </main>
 
       

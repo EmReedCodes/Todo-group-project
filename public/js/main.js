@@ -133,3 +133,52 @@ async function markComplete(event) {
 //         console.log(err)
 //     }
 // }
+
+
+function toggleLightDark(setTheme = null) {
+  // get elm and current theme
+  let root     = document.querySelector('html')
+  let theme    = root.getAttribute('data-theme')
+  let themeElm = document.querySelector(".user-info .theme")
+
+  // set new theme
+  let newTheme = ''
+  let inverse = ''
+
+  if (setTheme != null) {
+    newTheme = setTheme
+  } else {
+    if (theme == 'light') {
+      newTheme = 'dark'
+    } else {
+      newTheme = 'light'
+    }
+  }
+
+  if (newTheme == 'light') {
+    inverse  = 'dark'
+  } else {
+    inverse  = 'light'
+  }
+
+  root.setAttribute('data-theme', newTheme)
+  themeElm.innerText = inverse
+
+  // save to storage
+  storeTheme(newTheme)
+}
+
+function loadLightDark() {
+  let loadedTheme = readTheme()
+  toggleLightDark(loadedTheme)
+}
+
+function readTheme() {
+  return localStorage.getItem('theme')
+}
+
+function storeTheme(theme) {
+  localStorage.setItem('theme', theme)
+}
+
+loadLightDark()
