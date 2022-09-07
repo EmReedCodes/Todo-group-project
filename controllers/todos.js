@@ -13,11 +13,20 @@ module.exports = {
       console.log(err)
     }
   },
-  getTasksCount: async (req, res) => {
+  getTasksLeftCount: async (req, res) => {
     console.log(req.user)
     try {
       const itemsLeft = await Todo.find({ userId: req.user.id }).countDocuments({ completed: false })
       res.status(200).send({ count: itemsLeft })
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  getTotalTasksCount: async (req, res) => {
+    console.log(req.user)
+    try {
+      const totalItems = await Todo.find({ userId: req.user.id }).countDocuments()
+      res.status(200).send({ count: totalItems })
     } catch (err) {
       console.log(err)
     }

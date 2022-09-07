@@ -28,23 +28,22 @@ Array.from(todoItem).forEach(el => {
 // })
 
 function editTodo(event) {
-  let parentElm  = event.target.closest('td').previousElementSibling
-  let contentElm = parentElm.querySelector('.content')
-  console.log(contentElm)
+  let parentElm  = event.target.closest('.task')
+  let contentElm = parentElm.querySelector('.task-name')
+
   contentElm.setAttribute('contenteditable', true)
-  contentElm.closest('.todoItem').classList.add('todo-editing')
+  parentElm.classList.add('todo-editing')
 }
 
-//Im looking to grab the value out of .content (el.todo)
+//Im looking to grab the value out of .task-name (el.todo)
 async function saveTodo(event) {
   // setup loading
   event.target.setAttribute('aria-busy', 'true')
   
-  let todoId     = event.target.closest('.todoItem').dataset.id
-  let parentElm  = event.target.closest('td').previousElementSibling
-  let contentElm = parentElm.querySelector('.content')
+  let todoId     = event.target.closest('.task').dataset.id
+  let parentElm  = event.target.closest('.task')
+  let contentElm = parentElm.querySelector('.task-name')
 
-  console.log(contentElm)
 
   let content = contentElm.innerText
   try {
@@ -62,14 +61,14 @@ async function saveTodo(event) {
       clientsideEditTodo(event)
     }
   } catch (err) {
-    console.log(err)
+    console.err(err)
   }
 }
 
 async function deleteTodo(event) {
   event.target.setAttribute('aria-busy', 'true')
 
-  let todoId = event.target.closest('.todoItem').dataset.id
+  let todoId = event.target.closest('.task').dataset.id
   try {
     const response = await fetch('todos/deleteTodo', {
       method: 'delete',
@@ -79,11 +78,11 @@ async function deleteTodo(event) {
       })
     })
     const data = await response.json()
-    console.log(data)
+
     // location.reload()
     clientsideDeleteTodo(event)
   } catch (err) {
-    console.log(err)
+    console.err(err)
   }
 }
 
@@ -91,7 +90,7 @@ async function deleteTodo(event) {
 async function toggleComplete(event) {
   event.target.setAttribute('aria-busy', 'true')
 
-  let todoId = event.target.closest('.todoItem').dataset.id
+  let todoId = event.target.closest('.task').dataset.id
 
   try {
     const response = await fetch('todos/toggleComplete', {
@@ -103,11 +102,9 @@ async function toggleComplete(event) {
     })
     const data = await response.json()
 
-    console.log("here")
-    const response2 = await fetch('todos/getTasksLeft')
+    const response2 = await fetch('todos/getTasksLeftCount')
     const data2     = await response2.json()
 
-    console.log(data2.count)
     if (data2.count == 0) {
       const jsConfetti = new JSConfetti()
       jsConfetti.addConfetti({
@@ -119,34 +116,53 @@ async function toggleComplete(event) {
     }
 
     // location.reload()
-    clientsideToggleComplete(event)
+    clientsideToggleComplete(event, data2.count)
   } catch (err) {
-    console.log(err)
-  }image.png
+    console.err(err)
+  }
 }
 
-function clientsideToggleComplete(event) {
+async function clientsideToggleComplete(event, leftCount) {
   event.target.setAttribute('aria-busy', 'false')
 
-  let elm = event.target.closest('.todoItem')
+  let elm = event.target.closest('.task')
 
   elm.classList.toggle('todo-completed')
+  
+  updateProgress()
 }
 
-function clientsideDeleteTodo(event) {
+async function clientsideDeleteTodo(event) {
   event.target.setAttribute('aria-busy', 'false')
-  let elm = event.target.closest('.todoItem')
-
+  let elm = event.target.closest('.task')
+  
   elm.remove()
+
+  updateProgress()
 }
 
 function clientsideEditTodo(event) {
   event.target.setAttribute('aria-busy', 'false')
 
-  let elm = event.target.closest('.todoItem')
+  let elm = event.target.closest('.task')
 
   elm.querySelector('[contenteditable]').setAttribute('contenteditable', false)
   elm.classList.toggle('todo-editing')
+}
+
+async function updateProgress() {
+  let progBar = document.querySelector('.progress .bar progress')
+  let progNum = document.querySelector('.progress .nums')
+
+  const leftCount  = (await (await fetch('todos/getTasksLeftCount')).json()).count
+  const totalCount = (await (await fetch('todos/getTotalTasksCount')).json()).count
+  const completed  = totalCount - leftCount
+
+  progBar.setAttribute('value', completed)
+  progBar.setAttribute('max', totalCount)
+
+  progNum.innerText = `${completed} / ${totalCount}`
+
 }
 
 function toggleLightDark(setTheme = null) {

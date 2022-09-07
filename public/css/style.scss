@@ -1,10 +1,14 @@
 /** @format */
 
+$task-bg-active: rgba(250,250,255, 0.7);
+$task-bg-dimmed: rgba(250,250,255, 0.3);
+$task-name-editing-bg: rgba(250,250,255, 0.9);
+
 @mixin animate {
   transition: all 0.15s ease-in-out;
 }
 
-.todoItem {
+.task {
   .buttons .save {
     display: none;
   }
@@ -29,7 +33,7 @@
   }
 } 
 
-.todoItem.todo-editing {
+.task.todo-editing {
 
   .save {
     display: block;
@@ -39,21 +43,38 @@
     display: none;
   }
   
-  .content {
+  .task-name {
     cursor: text;
-    background: #184f45;
+    // background: #184f45;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: $task-name-editing-bg;
   }
 } 
 
-.todo-completed {
+.task.todo-completed {
+  order: -1;
+  background: $task-bg-dimmed;
+
   .edit {
     display: none;
   }
 
-  .content {
-    text-decoration: line-through;
-    color: gray;
+  .task-name {
+    // text-decoration: line-through;
+    color: darkgray;
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparentize(darkgray, 0.5);
+    }
   }
 }
 
@@ -94,3 +115,73 @@
   font-family: 'Roboto', sans-serif;
 }
 /* Julian end */
+
+
+
+.task {
+  padding: 0.5rem;
+  
+  background: $task-bg-active;
+  color: rgba(10,10,30,1);
+  margin: 0.25rem;
+  border-radius: 10px;
+  
+  
+  display: grid;
+  
+  grid-template-areas: "name buttons";
+  grid-template-columns: auto min-content;
+  
+  > * {
+      white-space: nowrap;
+      padding: 0.5rem;
+  }
+
+  .buttons {
+    grid-area: buttons;
+    display: flex;
+
+    .button {
+      padding: 0.25rem;
+      margin: 0 0.25rem;
+    }
+  }
+  
+  .task-name {
+      grid-area: name;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+
+      @include animate;
+  }
+  
+  .task-description {
+      font-style: italic;
+      grid-area: desc;
+  }
+  
+  .brackets {
+      grid-area: brackets;
+      display: flex;
+      
+      font-family: monospace;
+      
+      > * {
+          &:before {
+              content: "[";
+          }
+
+          &:after {
+              content: "]";
+          }
+      }
+  }
+}
+
+
+.list {
+  display: flex;
+  flex-direction: column-reverse;
+}
