@@ -4,7 +4,7 @@
 const editBtn   = document.querySelectorAll('.edit')
 const saveBtn   = document.querySelectorAll('.save')
 
-const deleteBtn = document.querySelectorAll('.del')
+const deleteBtn = document.querySelectorAll('.delete')
 const todoItem  = document.querySelectorAll('.check')
 
 Array.from(editBtn).forEach(el => {
