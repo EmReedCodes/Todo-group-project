@@ -4,7 +4,6 @@ const express          = require('express')
 const app              = express()
 const mongoose         = require('mongoose')
 const passport         = require('passport')
-// const passportGoogle   = require('./config/passport-google')
 const session          = require('express-session')
 const MongoStore       = require('connect-mongo')(session)
 const flash            = require('express-flash')
@@ -14,6 +13,8 @@ const mainRoutes       = require('./routes/auth/local-routes')
 const todoRoutes       = require('./routes/todos')
 const authGoogleRoutes = require('./routes/auth/google-routes')
 const authLocalRoutes  = require('./routes/auth/local-routes')
+
+// const passportGoogle   = require('./config/passport-google')
 
 require('dotenv').config({ path: './config/.env' })
 

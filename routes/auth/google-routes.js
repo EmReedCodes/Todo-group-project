@@ -1,10 +1,10 @@
 /** @format */
 
-const router   = require('express').Router()
-const passport = require('passport')
-
-//const authGoogleController = require('../../controllers/authGoogle')
+const router         = require('express').Router()
+const passport       = require('passport')
 const homeController = require('../../controllers/home')
+
+// const authGoogleController        = require('../../controllers/authGoogle')
 // const { ensureAuth, ensureGuest } = require('../../middleware/auth')
 
 router.get('/', homeController.getIndex)
