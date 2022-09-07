@@ -5,7 +5,7 @@ const passport = require('passport')
 
 //const authGoogleController = require('../../controllers/authGoogle')
 const homeController = require('../../controllers/home')
-const { ensureAuth, ensureGuest } = require('../../middleware/auth')
+// const { ensureAuth, ensureGuest } = require('../../middleware/auth')
 
 router.get('/', homeController.getIndex)
 //router.get('/login', authGoogleController.getLogin)
