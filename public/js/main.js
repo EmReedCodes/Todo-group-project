@@ -212,3 +212,5 @@ function storeTheme(theme) {
 }
 
 loadLightDark()
+
+//Priority switching will be here when completed
