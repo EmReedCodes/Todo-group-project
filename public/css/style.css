@@ -15291,6 +15291,14 @@ i[class^=nf-] {
  *  ─────────────────────────────────── */
 /*  themes (settings page)
  *  ─────────────────────────────────── */
+/*
+    https://yeun.github.io/open-color/
+
+    * see the repetition in the code?
+    find the pattern, and then use sass 
+    functions to create these on the 
+    fly using color names from open-color
+*/
 [data-theme=grape] {
   --primary: var(--grape-5);
   --primary-hover: var(--grape-4);

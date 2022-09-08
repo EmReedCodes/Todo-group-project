@@ -24,6 +24,14 @@ $task-completed-text   : var(--gray-8);
 
 /*  themes (settings page)
  *  ─────────────────────────────────── */
+/*
+    https://yeun.github.io/open-color/
+
+    * see the repetition in the code?
+    find the pattern, and then use sass 
+    functions to create these on the 
+    fly using color names from open-color
+*/
 
 [data-theme="grape"] {
   --primary: var(--grape-5);
