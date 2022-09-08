@@ -11,6 +11,7 @@ const logger           = require('morgan')
 const connectDB        = require('./config/database')
 const mainRoutes       = require('./routes/auth/local-routes')
 const todoRoutes       = require('./routes/todos')
+const settingsRoutes   = require('./routes/settings')
 const authGoogleRoutes = require('./routes/auth/google-routes')
 const authLocalRoutes  = require('./routes/auth/local-routes')
 
@@ -49,6 +50,7 @@ app.use('/', mainRoutes)
 app.use('/auth-local', authLocalRoutes)
 app.use('/auth-google', authGoogleRoutes)
 app.use('/todos', todoRoutes)
+app.use('/settings', settingsRoutes)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}, you better catch it!`)

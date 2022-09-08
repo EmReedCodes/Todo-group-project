@@ -1,0 +1,38 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+    <link rel="icon" href="data:," />
+    <!-- <link rel"stylesheet: href="css/pico.min.css"> -->
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/ddd77854d8.js" crossorigin="anonymous"></script>
+    <title>Todone</title>
+  </head>
+  <body>
+    <main class="container">
+      <nav>
+        <h1><a href="/todos">Todos</a></h1>
+        <div class="user-info">
+          <details role="list" dir="rtl">
+            <summary aria-haspopup="listbox" role="link"><%= user.userName %></summary>
+            <ul role="listbox">
+              <li onclick="toggleLightDark()"><a href="#"><span class="theme"></span> theme</a></li>
+              <li><a href="/settings">Settings</a></li>
+              <li><a><hr></a></li>
+              <li><a href="/logout">Log out</a></li>
+            </ul>
+          </details>
+        </div>
+      </nav>
+      <div class="card">
+        settings
+      </div>
+    </main>
+    <script src="js/main.js"></script>
+  </body>
+</html>

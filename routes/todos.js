@@ -9,7 +9,7 @@ router.get('/', ensureAuth, todosController.getTodos)
 
 router.get('/getTasksLeftCount', todosController.getTasksLeftCount)
 
-router.get('/gettotalTasksCount', todosController.getTotalTasksCount)
+router.get('/getTotalTasksCount', todosController.getTotalTasksCount)
 
 router.post('/createTodo', todosController.createTodo)
 
