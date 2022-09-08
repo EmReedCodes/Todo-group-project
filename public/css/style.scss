@@ -1,23 +1,50 @@
 /** @format */
 
-@import "https://unpkg.com/open-props";
-@import "https://unpkg.com/@picocss/pico";
 
+
+/*  Imports
+ *  ─────────────────────────────────── */
+
+ @import "https://unpkg.com/open-props";
+@import "https://unpkg.com/@picocss/pico";
 @import "_octo-overrides";
 
-$task-bg-active      : var(--gray-5);
-$task-bg-dimmed      : transparent;
 
-$task-text: var(--gray-9);
 
-$task-name-editing-bg: var(--gray-3);
+/*  variables
+ *  ─────────────────────────────────── */
 
-$task-edit-inner-shadow: var(--inset-shadow-2), var(--shadow-border);
+$task-bg-active        : var(--gray-5);
+$task-bg-dimmed        : transparent;
+$task-text             : var(--gray-9);
+$task-name-editing-bg  : var(--gray-3);
+$task-completed-text   : var(--gray-8);
 
-$task-completed-text  : var(--gray-8);
+
+
+/*  themes (settings page)
+ *  ─────────────────────────────────── */
+
+[data-theme="grape"] {
+  --primary: var(--grape-5);
+  --primary-hover: var(--grape-4);
+  --primary-focus: transparentize(var(--grape-5), 0.25);
+  --primary-inverse: findColorInverse(var(--primary));
+}
+[data-theme="green"] {
+  --primary: var(--green-5);
+  --primary-hover: var(--green-4);
+  --primary-focus: transparentize(var(--green-5), 0.25);
+  --primary-inverse: findColorInverse(var(--primary));
+}
+
+
+
+/*  styles
+ *  ─────────────────────────────────── */
+//@todo these need reafactored
 
 .task {
-  color: $task-text;
   .buttons .save {
     display: none;
   }
@@ -54,7 +81,6 @@ $task-completed-text  : var(--gray-8);
   
   .task-name {
     cursor: text;
-    box-shadow: $task-edit-inner-shadow;
     background-color: $task-name-editing-bg;
   }
 } 
@@ -86,8 +112,6 @@ $task-completed-text  : var(--gray-8);
   }
 }
 
-
-/* Julian start */
 
 // g-signin button
 #customBtn {
@@ -123,14 +147,14 @@ $task-completed-text  : var(--gray-8);
   /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto', sans-serif;
 }
-/* Julian end */
-
+/* g button end */
 
 
 .task {
   padding: 0.5rem;
   
   background: $task-bg-active;
+  color: $task-text;
   margin: 0.25rem;
   border-radius: 10px;
   

@@ -1,5 +1,10 @@
+@import "_funcs";
 
-// animate mixins
+
+
+/*  animate
+ *  ─────────────────────────────────── */
+// @todo use open-props animate bits here
 
 @mixin animate-slow {
   transition: all 0.45s ease-in-out;
@@ -12,7 +17,9 @@
 }
 
 
-// mdl shadows
+
+/*  MDL shadows
+ *  ─────────────────────────────────── */
 
 $shadow-none        : inset 0 0 0 rgba(0,0,0,0),          inset 0 0 0 rgba(0,0,0,0),          0 0 0 rgba(0,0,0,0),          0 0 0 rgba(0,0,0,0);
 
@@ -49,16 +56,21 @@ $inset-shadow-5     : inset 0 19px 38px rgba(0,0,0,0.30), inset 0 15px 12px rgba
 }
 
 
-// nerdfont icons
+
+/*  nerdfont icons
+ *  ─────────────────────────────────── */
 
 @import "_nf";
+
 .icon i[class^="nf-"] {
   @include animate;
 }
 
 
 
-// breakpoints
+/*  breakpoints
+ *  ─────────────────────────────────── */
+// @todo check out open-props breakpoints and incorporate here
 
 $breakpoints: (
   'small'       : ('min': 1px,    'max': 600px),
