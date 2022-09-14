@@ -212,3 +212,32 @@ function storeTheme(theme) {
 }
 
 loadLightDark()
+
+async function changeTodoPriority() {
+
+  //Grabs todoID to be used for database document retrieval
+  const todoId = this.parentNode.dataset.id
+
+  //Grabs parent task element
+  let parentElm = event.target.closest("li")
+  //Grabs the select element for priorities
+  let contentElm = parentElm.querySelector(".priority")
+  //grabs the last selected priority option
+  let newPriority = contentElm.options[contentElm.selectedIndex].value;
+  
+
+  try {
+    const response = await fetch('todos/changeTodoPriority', {
+      method: 'put',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({
+        todoIdFromJSFile: todoId,
+        todoPriorityFromJSFile: newPriority
+      })
+    })
+    const data = await response.json()
+    console.log(data)
+    location.reload()
+  } catch (err) {
+    console.log(err)
+  }}
