@@ -57,6 +57,16 @@
             <div class="button save">
               <span class="fa-solid fa-save icon" role="img" aria-label="Save"></span>
             </div>
+            <div>
+              <!-- Selects whichever priority levels exists in the databse for that task -->
+              <select class="priority" name="priority" form="priorityForm">
+                <option value="urgent" <%= el.priority == 'urgent' ? 'selected' : ''%>>Urgent</option>
+                <option value="Normal" <%= el.priority == 'Normal' ? 'selected' : ''%>>Normal</option>
+                <option value="noRush" <%= el.priority == 'noRush' ? 'selected' : ''%>>No Rush</option>
+            </select>
+            <!-- Wrapping the select in a form causes a line break so it must be outside the form element -->
+            <form id="priorityForm"></form>
+            </div>
             <div class="button delete">
               <span class="fa-solid fa-trash-can icon" role="img" aria-label="Delete"></span>
             </div>
