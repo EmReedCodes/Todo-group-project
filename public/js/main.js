@@ -222,15 +222,18 @@ loadLightDark()
 async function changeTodoPriority() {
 
   //Grabs todoID to be used for database document retrieval
-  const todoId = this.parentNode.dataset.id
 
-  //Grabs parent task element
-  let parentElm = event.target.closest("li")
+  todoId = this.parentNode.parentNode.parentNode.dataset.id
+  console.log(todoId)
+
+  //Grabs parent buttons element
+  let parentElm = event.target.closest(".buttons")
+  console.log(parentElm)
   //Grabs the select element for priorities
   let contentElm = parentElm.querySelector(".priority")
+  console.log(contentElm)
   //grabs the last selected priority option
   let newPriority = contentElm.options[contentElm.selectedIndex].value;
-  
 
   try {
     const response = await fetch('todos/changeTodoPriority', {

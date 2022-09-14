@@ -141,3 +141,8 @@
   display: flex;
   flex-direction: column-reverse;
 }/*# sourceMappingURL=style.css.map */
+
+.priority{
+  width: auto;
+  height: auto;
+}
