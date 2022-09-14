@@ -91,5 +91,20 @@ module.exports = {
     } catch (err) {
       console.log(err)
     }
+  },
+
+  changeTodoPriority: async (req, res) => {
+    try {
+      console.log(req.body)
+      await Todo.findOneAndUpdate(
+        { _id: req.body.todoIdFromJSFile },
+        {
+          priority: req.body.todoPriorityFromJSFile
+        },
+      )
+      console.log('Changed priority')
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
