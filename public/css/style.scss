@@ -1,12 +1,56 @@
 /** @format */
 
-$task-bg-active: rgba(250,250,255, 0.7);
-$task-bg-dimmed: rgba(250,250,255, 0.3);
-$task-name-editing-bg: rgba(250,250,255, 0.9);
 
-@mixin animate {
-  transition: all 0.15s ease-in-out;
+
+/*  Imports
+ *  ─────────────────────────────────── */
+
+ @import "https://unpkg.com/open-props";
+@import "https://unpkg.com/@picocss/pico";
+@import "_octo-overrides";
+
+
+
+/*  variables
+ *  ─────────────────────────────────── */
+
+$task-bg-active        : var(--gray-5);
+$task-bg-dimmed        : transparent;
+$task-text             : var(--gray-9);
+$task-name-editing-bg  : var(--gray-3);
+$task-completed-text   : var(--gray-8);
+
+
+
+/*  themes (settings page)
+ *  ─────────────────────────────────── */
+/*
+    https://yeun.github.io/open-color/
+
+    * see the repetition in the code?
+    find the pattern, and then use sass 
+    functions to create these on the 
+    fly using color names from open-color
+*/
+
+[data-theme="grape"] {
+  --primary: var(--grape-5);
+  --primary-hover: var(--grape-4);
+  --primary-focus: transparentize(var(--grape-5), 0.25);
+  --primary-inverse: findColorInverse(var(--primary));
 }
+[data-theme="green"] {
+  --primary: var(--green-5);
+  --primary-hover: var(--green-4);
+  --primary-focus: transparentize(var(--green-5), 0.25);
+  --primary-inverse: findColorInverse(var(--primary));
+}
+
+
+
+/*  styles
+ *  ─────────────────────────────────── */
+//@todo these need reafactored
 
 .task {
   .buttons .save {
@@ -45,8 +89,6 @@ $task-name-editing-bg: rgba(250,250,255, 0.9);
   
   .task-name {
     cursor: text;
-    // background: #184f45;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.24);
     background-color: $task-name-editing-bg;
   }
 } 
@@ -54,16 +96,16 @@ $task-name-editing-bg: rgba(250,250,255, 0.9);
 .task.todo-completed {
   order: -1;
   background: $task-bg-dimmed;
+  color: $task-completed-text;
 
   .edit {
     display: none;
   }
 
   .task-name {
-    // text-decoration: line-through;
-    color: darkgray;
     position: relative;
 
+    // line crossing out entire todo entry
     &:after {
       content: '';
       display: block;
@@ -73,21 +115,20 @@ $task-name-editing-bg: rgba(250,250,255, 0.9);
       border-radius: 999px;
       top: 50%;
       transform: translateY(-50%);
-      background: transparentize(darkgray, 0.5);
+      background: $task-completed-text;
     }
   }
 }
 
 
-/* Julian start */
-
+// g-signin button
 #customBtn {
   display: inline-block;
-  background: white;
-  color: #444;
+  background: var(--gray-3);
+  color: var(--gray-8);
   border-radius: 5px;
-  border: thin solid #888;
-  box-shadow: 1px 1px 1px grey;
+  border: thin solid var(--gray-8);
+  box-shadow: var(--inset-shadow-2);
   white-space: nowrap;
 
   cursor: pointer;
@@ -114,15 +155,14 @@ $task-name-editing-bg: rgba(250,250,255, 0.9);
   /* Use the Roboto font that is loaded in the <head> */
   font-family: 'Roboto', sans-serif;
 }
-/* Julian end */
-
+/* g button end */
 
 
 .task {
   padding: 0.5rem;
   
   background: $task-bg-active;
-  color: rgba(10,10,30,1);
+  color: $task-text;
   margin: 0.25rem;
   border-radius: 10px;
   

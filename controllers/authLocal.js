@@ -13,6 +13,14 @@ exports.getLogin = (req, res) => {
   })
 }
 
+exports.getSettings = (req, res) => {
+  if (req.user) {
+    res.render('settings', {
+      title: 'Settings', user: req.user
+    })
+  }
+}
+
 exports.postLogin = (req, res, next) => {
   const validationErrors = []
 

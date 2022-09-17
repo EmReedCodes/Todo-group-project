@@ -11,6 +11,7 @@ router.get('/', homeController.getIndex)
 router.get('/login', authLocalController.getLogin)
 router.post('/login', authLocalController.postLogin)
 router.get('/logout', authLocalController.logout)
+router.get('/settings', authLocalController.getSettings)
 router.get('/signup', authLocalController.getSignup)
 router.post('/signup', authLocalController.postSignup)
 

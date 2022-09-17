@@ -1,8 +1,8 @@
 /** @format */
 
-const router         = require('express').Router()
-const passport       = require('passport')
-const homeController = require('../../controllers/home')
+const router             = require('express').Router()
+const passport           = require('passport')
+const homeController     = require('../../controllers/home')
 
 // const authGoogleController        = require('../../controllers/authGoogle')
 // const { ensureAuth, ensureGuest } = require('../../middleware/auth')
