@@ -7,12 +7,6 @@ const saveBtn   = document.querySelectorAll('.save')
 const deleteBtn = document.querySelectorAll('.delete')
 const todoItem  = document.querySelectorAll('.check')
 
-const todoPriority = document.querySelectorAll('.priority')
-
-Array.from(todoPriority).forEach((el)=>{
-    el.addEventListener('change', changeTodoPriority)
-})
-
 Array.from(editBtn).forEach(el => {
   el.addEventListener('click', editTodo)
 })
@@ -219,34 +213,4 @@ function storeTheme(theme) {
 
 loadLightDark()
 
-async function changeTodoPriority() {
-
-  //Grabs todoID to be used for database document retrieval
-
-  todoId = this.parentNode.parentNode.parentNode.dataset.id
-  console.log(todoId)
-
-  //Grabs parent buttons element
-  let parentElm = event.target.closest(".buttons")
-  console.log(parentElm)
-  //Grabs the select element for priorities
-  let contentElm = parentElm.querySelector(".priority")
-  console.log(contentElm)
-  //grabs the last selected priority option
-  let newPriority = contentElm.options[contentElm.selectedIndex].value;
-
-  try {
-    const response = await fetch('todos/changeTodoPriority', {
-      method: 'put',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        todoIdFromJSFile: todoId,
-        todoPriorityFromJSFile: newPriority
-      })
-    })
-    const data = await response.json()
-    console.log(data)
-    location.reload()
-  } catch (err) {
-    console.log(err)
-  }}
+//Priority switching will be here when completed

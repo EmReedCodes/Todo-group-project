@@ -33,7 +33,7 @@ module.exports = {
   },
   createTodo: async (req, res) => {
     try {
-      await Todo.create({ todo: req.body.todoItem, completed: false, userId: req.user.id, priority: "Normal" })
+      await Todo.create({ todo: req.body.todoItem, completed: false, userId: req.user.id })
       console.log('Todo has been added!')
       res.redirect('/todos')
     } catch (err) {
@@ -88,21 +88,6 @@ module.exports = {
       await Todo.findOneAndDelete({ _id: req.body.todoIdFromJSFile })
       console.log('Deleted Todo')
       res.json('Deleted It')
-    } catch (err) {
-      console.log(err)
-    }
-  },
-
-  changeTodoPriority: async (req, res) => {
-    try {
-      console.log(req.body)
-      await Todo.findOneAndUpdate(
-        { _id: req.body.todoIdFromJSFile },
-        {
-          priority: req.body.todoPriorityFromJSFile
-        },
-      )
-      console.log('Changed priority')
     } catch (err) {
       console.log(err)
     }
