@@ -41,27 +41,6 @@ i[class^=nf-] {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Bryce's CSS Beginning */
-.priority{
-  width: auto;
-  height: auto;
-  margin: auto;
-  padding: auto;
-}
-#priorityForm{
-  width: 0%;
-  height: 0%;
-  margin: 0%;
-  padding: 0%;
-}
-
-/* Adding extra padding on icons to align with bulky select priority element , requiring high specificity to overwrite*/
-
-.list .task .buttons .edit, .list .task .buttons .save, .list .task .buttons .delete, .list .task .buttons .check {
-  padding-top: 13px;
-}
-/* Bryce's CSS End */
-
 .nf-custom-c:before {
   content: "\e61e";
 }
