@@ -32,43 +32,45 @@
         </details>
       </div>
     </nav>
-    <form action="/todos/createTodo" method='POST'>
-      <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-      <input type="submit">
-    </form>
-    <section>
-      <div class="progress">
-        <div class="nums">
-          <%= total - left %> / <%= total %>
-        </div>
-        <div class="bar">
-          <progress value="<%= total - left %>" max="<%= total %>"></progress>
-        </div>
-      </div>
-    </section>
-    <section class="list">
-      <% todos.forEach( (el, idx) => { %>
-        <div class="task <%= el.completed === true ? 'todo-completed' : '' %>" data-id='<%=el._id%>'>
-          <div class="task-name"><%= el.todo %></div>
-          <!-- <div class="task-description">lorem ipsum dolor amet</div> -->
-          <div class="buttons">
-            <div class="button edit">
-              <span class="fa-solid fa-pen-to-square icon" role="img" aria-label="Edit"></span>
-            </div>
-            <div class="button save">
-              <span class="fa-solid fa-save icon" role="img" aria-label="Save"></span>
-            </div>
-            <div class="button delete">
-              <span class="fa-solid fa-trash-can icon" role="img" aria-label="Delete"></span>
-            </div>
-            <div class="button check">
-              <span class="fa-sharp fa-solid fa-check icon" role="img" aria-label="Check"></span>
-            </div>
+    <article>
+      <form action="/todos/createTodo" method='POST'>
+        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <input type="submit">
+      </form>
+      <section>
+        <div class="progress">
+          <div class="nums">
+            <%= total - left %> / <%= total %>
           </div>
-      </div>
-       
-      <% }) %>
-    </section>
+          <div class="bar">
+            <progress value="<%= total - left %>" max="<%= total %>"></progress>
+          </div>
+        </div>
+      </section>
+      <section class="list">
+        <% todos.forEach( (el, idx) => { %>
+          <div class="task <%= el.completed === true ? 'todo-completed' : '' %>" data-id='<%=el._id%>'>
+            <div class="task-name"><%= el.todo %></div>
+            <!-- <div class="task-description">lorem ipsum dolor amet</div> -->
+            <div class="buttons">
+              <div class="button edit">
+                <span class="fa-solid fa-pen-to-square icon" role="img" aria-label="Edit"></span>
+              </div>
+              <div class="button save">
+                <span class="fa-solid fa-save icon" role="img" aria-label="Save"></span>
+              </div>
+              <div class="button delete">
+                <span class="fa-solid fa-trash-can icon" role="img" aria-label="Delete"></span>
+              </div>
+              <div class="button check">
+                <span class="fa-sharp fa-solid fa-check icon" role="img" aria-label="Check"></span>
+              </div>
+            </div>
+        </div>
+      
+        <% }) %>
+      </section>
+    </article>
         
   </main>
 
