@@ -1,6 +1,6 @@
 /** @format */
 
-//LEON'S CODE//
+//TODO change to multiple js files, fix google auth
 const editBtn   = document.querySelectorAll('.edit')
 const saveBtn   = document.querySelectorAll('.save')
 
